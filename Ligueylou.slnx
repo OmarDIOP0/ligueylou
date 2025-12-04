@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="ligueylou.client/ligueylou.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="Ligueylou.Server/Ligueylou.Server.csproj" />
+</Solution>

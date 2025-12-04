@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ldgas32OPYI=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\bmd tech\\OneDrive\\Bureau\\Project\\Ligueylou\\Ligueylou.Server\\Ligueylou.Server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\bmd tech\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.0\\microsoft.aspnetcore.openapi.10.0.0.nupkg.sha512",
+    "C:\\Users\\bmd tech\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\10.0.0\\microsoft.aspnetcore.spaproxy.10.0.0.nupkg.sha512",
+    "C:\\Users\\bmd tech\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512",
+    "C:\\Users\\bmd tech\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.23.0\\microsoft.visualstudio.azure.containers.tools.targets.1.23.0.nupkg.sha512"
+  ],
+  "logs": []
+}
