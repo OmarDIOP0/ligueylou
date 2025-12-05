@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Ligueylou.Server.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace Ligueylou.Server.Models
 {
@@ -7,6 +8,7 @@ namespace Ligueylou.Server.Models
         [Key]
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Libelle { get; set; }
+        public TypeNotificationEnum TypeNotification { get; set; }
         public string? Description { get; set; }    
         public DateTime DateCreation { get; set; } = DateTime.Now;
         public DateTime? DateModification { get; set; }
