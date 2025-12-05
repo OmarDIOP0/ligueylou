@@ -13,7 +13,7 @@ namespace Ligueylou.Server.Models.abstracts
         public string Nom { get; set; }
         [EmailAddress]
         public string? Email { get; set; }
-        public string? Sexe { get; set; }
+        public SexeEnum? Sexe { get; set; }
         [Required, MinLength(8), MaxLength(20)]
         public string Password { get; set; }
         [Phone]
