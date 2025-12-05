@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Ligueylou.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2590dd4808e1ce7aab04851d67426991c70e850c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c8cdcb3f3dfa0da441dd5fbaf74d9f2cee537b13")]
 [assembly: System.Reflection.AssemblyProductAttribute("Ligueylou.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Ligueylou.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
