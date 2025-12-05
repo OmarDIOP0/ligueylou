@@ -18,7 +18,9 @@ namespace Ligueylou.Server.Models
         public Guid? PrestataireId { get; set; }
         public virtual Prestataire? Prestataire { get; set; }
 
-        public ICollection<Service> Services { get; set; }
-        public ICollection<Notification> Notifications { get; set; }
+        public DateTime? DateDebut { get; set; }
+        public DateTime? DateFin { get; set; }
+        public ICollection<Service> Services { get; set; } = new HashSet<Service>();
+        public ICollection<Notification> Notifications { get; set; } = new HashSet<Notification>();
     }
 }

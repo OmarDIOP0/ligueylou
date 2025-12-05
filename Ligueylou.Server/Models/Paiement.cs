@@ -12,7 +12,8 @@ namespace Ligueylou.Server.Models
         public MethodePaiementEnum MethodePaiement { get; set; }
         public Guid ServiceId { get; set; }
         public virtual Service Service { get; set; }
-        public ICollection<Notification> Notifications { get; set; }
-        public DateTime DateCreation { get; set; } = DateTime.Now;
+        public ICollection<Notification> Notifications { get; set; } = new HashSet<Notification>();
+        public DateTime DatePaiement { get; set; } = DateTime.Now;
+        public bool? Rembourse { get; set; } = false;
     }
 }
