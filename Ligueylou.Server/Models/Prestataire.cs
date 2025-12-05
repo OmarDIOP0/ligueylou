@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Ligueylou.Server.Models.abstracts;
+using System.ComponentModel.DataAnnotations;
 
 namespace Ligueylou.Server.Models
 {
-    public class Prestataire
+    public class Prestataire : Utilisateur
     {
         [Range(0, 5, ErrorMessage = "Le score doit être compris entre 0 et 5.")]
         public double Score { get; set; }
