@@ -13,6 +13,7 @@ namespace Ligueylou.Server.Dtos
         public RoleEnum Role { get; set; }
         public bool Actif { get; set; }
         public DateTime DateCreation { get; set; }
+        public DateTime? DerniereConnexion { get; set; }
 
     }
 }
