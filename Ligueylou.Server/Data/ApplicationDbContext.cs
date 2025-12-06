@@ -34,11 +34,15 @@ public class ApplicationDbContext : DbContext
             .HasValue<Administrateur>(RoleEnum.ADMIN)
             .HasValue<Client>(RoleEnum.CLIENT)
             .HasValue<Prestataire>(RoleEnum.PRESTATAIRE);
-
-        // Supprimez ces lignes si vous utilisez TPH ci-dessus
-        // modelBuilder.Entity<Client>().ToTable("Clients");
-        // modelBuilder.Entity<Prestataire>().ToTable("Prestataires");
-        // modelBuilder.Entity<Administrateur>().ToTable("Administrateurs");
+        
+        //Indexer Email
+        modelBuilder.Entity<Utilisateur>()
+            .HasIndex(u => u.Email)
+            .IsUnique();
+        //indexer Telephone
+        modelBuilder.Entity<Utilisateur>()
+            .HasIndex(u => u.Telephone)
+            .IsUnique();
 
         // Utilisateur - Adresse
         modelBuilder.Entity<Utilisateur>()
