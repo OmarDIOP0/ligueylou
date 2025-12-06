@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Ligueylou.Server.Models.abstracts;
+using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 
 namespace Ligueylou.Server.Models
@@ -12,7 +13,6 @@ namespace Ligueylou.Server.Models
         public string? CodePostal { get; set; }
         public string Pays { get; set; }
 
-        public ICollection<Client> Clients { get; set; } = new HashSet<Client>();
-        public ICollection<Prestataire> Prestataires { get; set; } = new HashSet<Prestataire>();
+        public ICollection<Utilisateur> Utilisateurs { get; set; } = new HashSet<Utilisateur>();
     }
 }

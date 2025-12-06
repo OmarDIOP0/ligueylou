@@ -25,5 +25,8 @@ namespace Ligueylou.Server.Models.abstracts
         public DateTime DateCreation { get; set; } = DateTime.Now;
         public string? PhotoProfil { get; set; }
         public DateTime? DerniereConnexion { get; set; }
+        public Guid? AdresseId { get; set; }
+        public Adresse? Adresse { get; set; }
+
     }
 }

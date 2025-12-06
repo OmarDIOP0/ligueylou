@@ -1,0 +1,10 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:34623",
+"RedirectUrl": "",
+"LaunchCommand": "npm start",
+"WorkingDirectory": "C:\\Users\\bmd tech\\OneDrive\\Bureau\\Project\\Ligueylou\\Ligueylou.Server\\..\\ligueylou.client",
+"MaxTimeoutInSeconds": "120",
+"KeepRunning": "false"
+}
+}
