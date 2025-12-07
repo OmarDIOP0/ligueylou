@@ -39,6 +39,10 @@ namespace Ligueylou.Server.Repository
         {
             return await _context.Utilisateurs.AnyAsync(u => u.Email == email);
         }
+        public async Task<bool> TelephoneExist(string telephone)
+        {
+            return await _context.Utilisateurs.AnyAsync(u => u.Telephone == telephone);
+        }
         public async Task<Utilisateur?> GetUtilisateurByEmail(string email)
         {
             var user = await _context.Utilisateurs
