@@ -12,11 +12,11 @@ namespace Ligueylou.Server.Repository
             _context = context;
         }
 
-        public async Task<Utilisateur?> GetUtilisateurById(Guid id)
+        public async Task<Utilisateur> GetUtilisateurById(Guid id)
         {
             return await _context.Utilisateurs.FindAsync(id).AsTask();
         }
-        public async Task<Utilisateur?> GetUtilisateurByEmail(string email)
+        public async Task<Utilisateur> GetUtilisateurByEmail(string email)
         {
             return await _context.Utilisateurs
                 .FirstOrDefaultAsync(u => u.Email == email);
