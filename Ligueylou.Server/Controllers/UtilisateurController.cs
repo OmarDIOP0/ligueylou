@@ -29,6 +29,12 @@ namespace Ligueylou.Server.Controllers
             var user = await _service.GetUtilisateurByEmail(email);
             return user == null ? NotFound() : Ok(user);
         }
+        [HttpGet("telephone/{telephone}")]
+        public async Task<IActionResult> GetByTelephone(string telephone)
+        {
+            var user = await _service.GetUtilisateurByTelephone(telephone);
+            return user == null ? NotFound() : Ok(user);
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()

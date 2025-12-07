@@ -55,6 +55,19 @@ namespace Ligueylou.Server.Repository
             await LoadRoleNavigationProperties(user);
             return user;
         }
+        public async Task<Utilisateur?> GetUtilisateurByTelephone(string telephone)
+        {
+            var user = await _context.Utilisateurs
+                .Include(u => u.Adresse)
+                .FirstOrDefaultAsync(u => u.Telephone == telephone);
+
+            if (user == null)
+                return null;
+
+            await LoadRoleNavigationProperties(user);
+            return user;
+        }
+
 
         // -----------------------------
         // GET ALL

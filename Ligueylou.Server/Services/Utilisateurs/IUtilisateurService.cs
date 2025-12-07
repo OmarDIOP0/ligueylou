@@ -9,10 +9,11 @@ namespace Ligueylou.Server.Services.Utilisateurs
     public interface IUtilisateurService
     {
         Task<ActionResult<UserRegisterResponse>> Register(CreateUtilisateurDto createUtilisateurDto);
-        Task<ActionResult<UserRegisterResponse>> Login(LoginRequestDto loginRequest);
+        Task<ActionResult<UserLoginResponse>> Login(LoginRequestDto loginRequest);
         Task AddRefreshToken(RefreshToken refreshToken);
         Task<UtilisateurDto> GetUtilisateurById(Guid id);
         Task<UtilisateurDto> GetUtilisateurByEmail(string email);
+        Task<UtilisateurDto> GetUtilisateurByTelephone(string telephone);
         Task<IEnumerable<UtilisateurDto>> GetAllUtilisateurs();
         Task<UtilisateurDto> AddUtilisateur(CreateUtilisateurDto utilisateurDto);
     }
