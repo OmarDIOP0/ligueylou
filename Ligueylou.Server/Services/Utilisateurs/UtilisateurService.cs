@@ -3,6 +3,8 @@ using Ligueylou.Server.Models;
 using Ligueylou.Server.Models.abstracts;
 using Ligueylou.Server.Repository;
 using Ligueylou.Server.Request;
+using Ligueylou.Server.Response;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Ligueylou.Server.Services.Utilisateurs
@@ -19,6 +21,21 @@ namespace Ligueylou.Server.Services.Utilisateurs
         {
             _logger = logger;
             _utilisateurRepo = utilisateurRepo;
+        }
+        public async Task<ActionResult<UserRegisterResponse>> Register(CreateUtilisateurDto createUtilisateurDto)
+        {
+            if(createUtilisateurDto == null)
+                throw new ArgumentNullException(nameof(createUtilisateurDto));
+            if(await _utilisateurRepo.EmailExist(createUtilisateurDto.Email))
+                throw new ArgumentException("Email existe deja");
+            if(await _utilisateurRepo.TelephoneExist(createUtilisateurDto.Telephone))
+                throw new ArgumentException("Telephone existe deja");
+
+        }
+
+        public Task<ActionResult<UserRegisterResponse>> Login(LoginRequestDto loginRequest)
+        {
+            throw new NotImplementedException();
         }
         public async Task<UtilisateurDto> GetUtilisateurById(Guid id)
         {
