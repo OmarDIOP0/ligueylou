@@ -135,5 +135,6 @@ namespace Ligueylou.Server.Services.Utilisateurs
                 _ => throw new ArgumentException("Type utilisateur inconnu")
             };
         }
+
     }
 }
