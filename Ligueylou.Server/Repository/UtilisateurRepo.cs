@@ -3,6 +3,7 @@ using Ligueylou.Server.Models;
 using Ligueylou.Server.Models.abstracts;
 using Ligueylou.Server.Models.Enums;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 
 namespace Ligueylou.Server.Repository
 {
@@ -34,6 +35,10 @@ namespace Ligueylou.Server.Repository
         // -----------------------------
         // GET BY EMAIL
         // -----------------------------
+        public async Task<bool> EmailExist(string email)
+        {
+            return await _context.Utilisateurs.AnyAsync(u => u.Email == email);
+        }
         public async Task<Utilisateur?> GetUtilisateurByEmail(string email)
         {
             var user = await _context.Utilisateurs
