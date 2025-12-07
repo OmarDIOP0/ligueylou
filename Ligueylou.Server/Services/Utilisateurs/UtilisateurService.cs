@@ -20,7 +20,7 @@ namespace Ligueylou.Server.Services.Utilisateurs
             _logger = logger;
             _utilisateurRepo = utilisateurRepo;
         }
-        public async Task<UtilisateurDto?> GetUtilisateurById(Guid id)
+        public async Task<UtilisateurDto> GetUtilisateurById(Guid id)
         {
             var user = await _utilisateurRepo.GetUtilisateurById(id);
 
