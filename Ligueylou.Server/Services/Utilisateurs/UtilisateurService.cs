@@ -33,57 +33,61 @@ namespace Ligueylou.Server.Services.Utilisateurs
         }
         public async Task<ActionResult<UserRegisterResponse>> Register(CreateUtilisateurDto request)
         {
-            return null;
-            //if(request == null)
-            //    throw new ArgumentNullException(nameof(request));
-            //if(await _utilisateurRepo.EmailExist(request.Email))
-            //    throw new ArgumentException("Email deja utilisé ");
-            //if(await _utilisateurRepo.TelephoneExist(request.Telephone) && !string.IsNullOrEmpty(request.Telephone))
-            //    throw new ArgumentException("Telephone deja utilisé");
-            //Utilisateur user = request.Role switch
-            //{
-            //    Models.Enums.RoleEnum.CLIENT => new Client(),
-            //    Models.Enums.RoleEnum.PRESTATAIRE => new Prestataire(),
-            //    Models.Enums.RoleEnum.ADMIN => new Administrateur
-            //    {
-            //        CodeSecret = Guid.NewGuid().ToString("N")[..8]
-            //    },
-            //    _ => throw new ArgumentException("Role invalide")
-            //};
-            //user.Prenom = request.Prenom;
-            //user.Nom = request.Nom;
-            //user.Email = request.Email;
-            //user.Password = request.Password;
-            //user.Telephone = request.Telephone;
-            //user.Sexe = request.Sexe;
-            //user.Role = request.Role;
-            //user.Actif = true;
-            //user.DateCreation = DateTime.UtcNow;
-            //user.Password = BCrypt.Net.BCrypt.HashPassword(request.Password);
-            //await _utilisateurRepo.AddUtilisateur(user);
+            if(request == null)
+                throw new ArgumentNullException(nameof(request));
+            if(await _utilisateurRepo.EmailExist(request.Email))
+                throw new ArgumentException("Email deja utilisé ");
+            if(await _utilisateurRepo.TelephoneExist(request.Telephone) && !string.IsNullOrEmpty(request.Telephone))
+                throw new ArgumentException("Telephone deja utilisé");
+            Utilisateur user = request.Role switch
+            {
+                Models.Enums.RoleEnum.CLIENT => new Client(),
+                Models.Enums.RoleEnum.PRESTATAIRE => new Prestataire(),
+                Models.Enums.RoleEnum.ADMIN => new Administrateur
+                {
+                    CodeSecret = Guid.NewGuid().ToString("N")[..8]
+                },
+                _ => throw new ArgumentException("Role invalide")
+            };
+            user.Prenom = request.Prenom;
+            user.Nom = request.Nom;
+            user.Email = request.Email;
+            user.Password = request.Password;
+            user.Telephone = request.Telephone;
+            user.Sexe = request.Sexe;
+            user.Role = request.Role;
+            user.Actif = true;
+            user.DateCreation = DateTime.UtcNow;
+            user.Password = BCrypt.Net.BCrypt.HashPassword(request.Password);
+            await _utilisateurRepo.AddUtilisateur(user);
 
-            //var claims = new[]
-            //{
-            //    new Claim(ClaimTypes.Name, user.Prenom ?? string.Empty),
-            //    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            //    new Claim(ClaimTypes.Role, user.Role.ToString().ToLower()),
-            //    new Claim(JwtRegisteredClaimNames.GivenName,$"{user.Prenom} {user.Nom}"),
-            //    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            //};
-            //var (accessToken, expire) = _tokenService.GenerateAccessToken(claims);
-            //string refreshToken = _tokenService.GenerateRefreshToken();
-            //_ = int.TryParse(_config["Jwt:RefreshTokenValidityInDays"], out int refreshTokenValidityInDays);
-            //var refreshTokenEntity = new RefreshToken
-            //{
-            //    UserName =user.Id + user.Nom + user.Prenom,
-            //    Refresh_Token = refreshToken,
-            //    Created = DateTime.UtcNow,
-            //    Expires = DateTime.UtcNow.AddDays(refreshTokenValidityInDays)
-            //};
-            //return new UserRegisterResponse
-            //{
-                
-            //};
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.Name, user.Prenom ?? string.Empty),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Role, user.Role.ToString().ToLower()),
+                new Claim(JwtRegisteredClaimNames.GivenName,$"{user.Prenom} {user.Nom}"),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
+            var (accessToken, expire) = _tokenService.GenerateAccessToken(claims);
+            string refreshToken = _tokenService.GenerateRefreshToken();
+            _ = int.TryParse(_config["Jwt:RefreshTokenValidityInDays"], out int refreshTokenValidityInDays);
+            var refreshTokenEntity = new RefreshToken
+            {
+                UserName =user.Id + user.Nom + user.Prenom,
+                Refresh_Token = refreshToken,
+                Created = DateTime.UtcNow,
+                Expires = DateTime.UtcNow.AddDays(refreshTokenValidityInDays)
+            };
+            await _utilisateurRepo.AddRefreshToken(refreshTokenEntity);
+            var userDto = MapToDto(user);
+            return new UserRegisterResponse
+            {
+                Token = accessToken,
+                RefreshToken = refreshToken,
+                TokenExpireAt = expire,
+                Utilisateur = userDto
+            };
         }
 
         public Task<ActionResult<UserRegisterResponse>> Login(LoginRequestDto loginRequest)
