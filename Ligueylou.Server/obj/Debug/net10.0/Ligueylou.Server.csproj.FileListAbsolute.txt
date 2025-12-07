@@ -216,3 +216,5 @@ C:\Users\bmd tech\OneDrive\Bureau\Project\Ligueylou\Ligueylou.Server\obj\Debug\n
 C:\Users\bmd tech\OneDrive\Bureau\Project\Ligueylou\Ligueylou.Server\obj\Debug\net10.0\Ligueylou.Server.pdb
 C:\Users\bmd tech\OneDrive\Bureau\Project\Ligueylou\Ligueylou.Server\obj\Debug\net10.0\Ligueylou.Server.genruntimeconfig.cache
 C:\Users\bmd tech\OneDrive\Bureau\Project\Ligueylou\Ligueylou.Server\obj\Debug\net10.0\ref\Ligueylou.Server.dll
+C:\Users\bmd tech\OneDrive\Bureau\Project\Ligueylou\Ligueylou.Server\bin\Debug\net10.0\BCrypt.Net-Next.dll
+C:\Users\bmd tech\OneDrive\Bureau\Project\Ligueylou\Ligueylou.Server\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

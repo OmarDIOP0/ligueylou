@@ -22,12 +22,12 @@ public class ApplicationDbContext : DbContext
     public DbSet<Specialite> Specialites { get; set; }
     public DbSet<Paiement> Paiements { get; set; }
     public DbSet<Notification> Notifications { get; set; }
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
     public DbSet<Favori> Favoris { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        // Table Per Hierarchy (TPH) configuration
         modelBuilder.Entity<Utilisateur>()
             .ToTable("Utilisateurs")
             .HasDiscriminator<RoleEnum>("Role")

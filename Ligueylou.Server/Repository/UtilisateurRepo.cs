@@ -79,6 +79,11 @@ namespace Ligueylou.Server.Repository
             await _context.Utilisateurs.AddAsync(utilisateur);
             await _context.SaveChangesAsync();
         }
+        public async Task AddRefreshToken(RefreshToken refreshToken)
+        {
+            await _context.RefreshTokens.AddAsync(refreshToken);
+            await _context.SaveChangesAsync();
+        }
 
         // -----------------------------
         // LOADER DES PROPRIÉTÉS SELON LE RÔLE
