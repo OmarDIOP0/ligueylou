@@ -16,6 +16,33 @@ namespace Ligueylou.Server.Controllers
             _service = service;
         }
 
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(CreateUtilisateurDto request)
+        {
+            try
+            {
+                var response = await _service.Register(request);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginRequestDto request)
+        {
+            try
+            {
+                var result = await _service.Login(request);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> Get(Guid id)
         {
