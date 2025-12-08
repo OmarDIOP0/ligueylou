@@ -100,6 +100,21 @@ namespace Ligueylou.Server.Repository
                 throw;
             }
         }
+        public async Task UpdateUtilisateur(Utilisateur user)
+        {
+            try
+            {
+                _context.Utilisateurs.Update(user);
+                await _context.SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("EF ERROR: " + ex.InnerException?.Message);
+                throw;
+            }
+
+        }
+
 
         public async Task AddRefreshToken(RefreshToken refreshToken)
         {
