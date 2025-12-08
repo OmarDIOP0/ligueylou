@@ -7,6 +7,5 @@ namespace Ligueylou.Server.Models
         [Required]
         public string CodeSecret { get; set; }
         public DateTime DateCreation { get; set; } = DateTime.Now;
-        public DateTime? DerniereConnexion { get; set; }
     }
 }
