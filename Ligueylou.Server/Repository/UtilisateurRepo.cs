@@ -114,6 +114,16 @@ namespace Ligueylou.Server.Repository
             }
 
         }
+        public async Task DeleteUtilisateur(Guid userId)
+        {
+            var user = await _context.Utilisateurs.FindAsync(userId);
+            if (user != null)
+            {
+                user.Actif = false;
+                _context.Utilisateurs.Update(user);
+                await _context.SaveChangesAsync();
+            }
+        }
 
 
         public async Task AddRefreshToken(RefreshToken refreshToken)

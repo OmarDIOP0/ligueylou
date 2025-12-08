@@ -102,7 +102,8 @@ namespace Ligueylou.Server.Services.Utilisateurs
                 throw new Exception("Email ou Téléphone requis");
 
             Utilisateur? user = null;
-
+            if(user.Actif == false)
+                throw new UnauthorizedAccessException("Compte utilisateur désactivé");
             if (!string.IsNullOrEmpty(loginRequest.Email))
                 user = await _utilisateurRepo.GetUtilisateurByEmail(loginRequest.Email);
             else if (!string.IsNullOrEmpty(loginRequest.Telephone))
