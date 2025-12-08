@@ -12,7 +12,7 @@ namespace Ligueylou.Server.Dtos
         public string? Telephone { get; set; }
         public RoleEnum Role { get; set; }
         public bool Actif { get; set; }
-        public DateTime DateCreation { get; set; }
+        public DateTime DateCreation { get; set; } = DateTime.UtcNow;
         public DateTime? DerniereConnexion { get; set; }
 
     }

@@ -31,14 +31,16 @@ namespace Ligueylou.Server.Services.Utilisateurs
             _tokenService = tokenService;
             _config = config;
         }
-        public async Task<ActionResult<UserRegisterResponse>> Register(CreateUtilisateurDto request)
+        public async Task<UserRegisterResponse> Register(CreateUtilisateurDto request)
         {
             if(request == null)
                 throw new Exception(nameof(request));
-            if(await _utilisateurRepo.EmailExist(request.Email))
-                throw new Exception("Email deja utilisé ");
-            if(await _utilisateurRepo.TelephoneExist(request.Telephone) && !string.IsNullOrEmpty(request.Telephone))
-                throw new Exception("Telephone deja utilisé");
+            if (!string.IsNullOrEmpty(request.Email) && await _utilisateurRepo.EmailExist(request.Email))
+                throw new Exception("L'adresse email est deja utilisé");
+
+            if (!string.IsNullOrEmpty(request.Telephone) && await _utilisateurRepo.TelephoneExist(request.Telephone))
+                throw new Exception("Le numéro de téléphone deja utilisé");
+
             Utilisateur user = request.Role switch
             {
                 Models.Enums.RoleEnum.CLIENT => new Client(),
@@ -80,6 +82,7 @@ namespace Ligueylou.Server.Services.Utilisateurs
                 Expires = DateTime.UtcNow.AddDays(refreshTokenValidityInDays)
             };
             await _utilisateurRepo.AddRefreshToken(refreshTokenEntity);
+            user = await _utilisateurRepo.GetUtilisateurById(user.Id);
             var userDto = MapToDto(user);
             return new UserRegisterResponse
             {
@@ -90,52 +93,50 @@ namespace Ligueylou.Server.Services.Utilisateurs
             };
         }
 
-        public async Task<ActionResult<UserLoginResponse>> Login(LoginRequestDto loginRequest)
+        public async Task<UserLoginResponse> Login(LoginRequestDto loginRequest)
         {
-            if(loginRequest == null) 
-                throw new Exception(nameof(loginRequest));
-            if(string.IsNullOrEmpty(loginRequest.Email) && string.IsNullOrEmpty(loginRequest.Telephone))
+            if (loginRequest == null)
+                throw new ArgumentNullException(nameof(loginRequest));
+
+            if (string.IsNullOrEmpty(loginRequest.Email) && string.IsNullOrEmpty(loginRequest.Telephone))
                 throw new Exception("Email ou Téléphone requis");
+
             Utilisateur? user = null;
+
             if (!string.IsNullOrEmpty(loginRequest.Email))
-            {
                 user = await _utilisateurRepo.GetUtilisateurByEmail(loginRequest.Email);
-            }
             else if (!string.IsNullOrEmpty(loginRequest.Telephone))
-            {
                 user = await _utilisateurRepo.GetUtilisateurByTelephone(loginRequest.Telephone);
-            }
+
             if (user == null)
-                return new UnauthorizedObjectResult("Utilisateur introuvable");
+                throw new UnauthorizedAccessException("Email/Telephone ou Mot de passe incorrecte");
 
             bool passwordValid = BCrypt.Net.BCrypt.Verify(loginRequest.Password, user.Password);
             if (!passwordValid)
-                return new UnauthorizedObjectResult("Mot de passe incorrect");
+                throw new UnauthorizedAccessException("Mot de passe incorrect");
 
             var claims = new[]
             {
-                new Claim(ClaimTypes.Name, user.Prenom ?? string.Empty),
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Role, user.Role.ToString().ToLower()),
-                new Claim(JwtRegisteredClaimNames.GivenName, $"{user.Prenom} {user.Nom}"),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
+        new Claim(ClaimTypes.Name, user.Prenom ?? string.Empty),
+        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+        new Claim(ClaimTypes.Role, user.Role.ToString().ToLower()),
+        new Claim(JwtRegisteredClaimNames.GivenName, $"{user.Prenom} {user.Nom}"),
+        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+    };
 
-            // Générer tokens
             var (accessToken, expire) = _tokenService.GenerateAccessToken(claims);
             string refreshToken = _tokenService.GenerateRefreshToken();
             _ = int.TryParse(_config["Jwt:RefreshTokenValidityInDays"], out int refreshTokenValidityInDays);
 
-            // Sauvegarder le refresh token dans la base
             var refreshTokenEntity = new RefreshToken
             {
-                UserName = user.Id + user.Nom + user.Prenom,
+                UserName = $"{user.Id}{user.Nom}{user.Prenom}",
                 Refresh_Token = refreshToken,
                 Created = DateTime.UtcNow,
                 Expires = DateTime.UtcNow.AddDays(refreshTokenValidityInDays)
             };
             await _utilisateurRepo.AddRefreshToken(refreshTokenEntity);
-
+            user = await _utilisateurRepo.GetUtilisateurById(user.Id);
             var userDto = MapToDto(user);
 
             return new UserLoginResponse
@@ -146,6 +147,7 @@ namespace Ligueylou.Server.Services.Utilisateurs
                 Utilisateur = userDto
             };
         }
+
         public async Task<UtilisateurDto> GetUtilisateurById(Guid id)
         {
             var user = await _utilisateurRepo.GetUtilisateurById(id);
@@ -274,9 +276,5 @@ namespace Ligueylou.Server.Services.Utilisateurs
             };
         }
 
-        public Task AddRefreshToken(RefreshToken refreshToken)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

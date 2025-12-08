@@ -8,9 +8,8 @@ namespace Ligueylou.Server.Services.Utilisateurs
 {
     public interface IUtilisateurService
     {
-        Task<ActionResult<UserRegisterResponse>> Register(CreateUtilisateurDto createUtilisateurDto);
-        Task<ActionResult<UserLoginResponse>> Login(LoginRequestDto loginRequest);
-        Task AddRefreshToken(RefreshToken refreshToken);
+        Task<UserRegisterResponse> Register(CreateUtilisateurDto createUtilisateurDto);
+        Task<UserLoginResponse> Login(LoginRequestDto loginRequest);
         Task<UtilisateurDto> GetUtilisateurById(Guid id);
         Task<UtilisateurDto> GetUtilisateurByEmail(string email);
         Task<UtilisateurDto> GetUtilisateurByTelephone(string telephone);

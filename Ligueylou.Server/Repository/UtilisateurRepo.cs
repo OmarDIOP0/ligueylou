@@ -87,15 +87,32 @@ namespace Ligueylou.Server.Repository
         // -----------------------------
         // CREATE
         // -----------------------------
-        public async Task AddUtilisateur(Utilisateur utilisateur)
+        public async Task AddUtilisateur(Utilisateur user)
         {
-            await _context.Utilisateurs.AddAsync(utilisateur);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Utilisateurs.Add(user);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("EF ERROR: " + ex.InnerException?.Message);
+                throw;
+            }
         }
+
         public async Task AddRefreshToken(RefreshToken refreshToken)
         {
-            await _context.RefreshTokens.AddAsync(refreshToken);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.RefreshTokens.AddAsync(refreshToken);
+                await _context.SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("EF ERROR: " + ex.InnerException?.Message);
+                throw;
+            }
         }
 
         // -----------------------------

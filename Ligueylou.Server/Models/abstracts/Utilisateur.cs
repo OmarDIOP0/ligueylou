@@ -14,7 +14,7 @@ namespace Ligueylou.Server.Models.abstracts
         [EmailAddress]
         public string? Email { get; set; }
         public SexeEnum? Sexe { get; set; }
-        [Required, MinLength(8), MaxLength(20), DataType(DataType.Password)]
+        [Required]
         public string Password { get; set; }
         [Phone]
         public string? Telephone { get; set; }
@@ -22,7 +22,7 @@ namespace Ligueylou.Server.Models.abstracts
         public string? LieuDeNaissance { get; set; }
         public bool Actif { get; set; } 
         public RoleEnum Role { get; set; }
-        public DateTime DateCreation { get; set; } = DateTime.Now;
+        public DateTime DateCreation { get; set; } = DateTime.UtcNow;
         public string? PhotoProfil { get; set; }
         public DateTime? DerniereConnexion { get; set; }
         public Guid? AdresseId { get; set; }
