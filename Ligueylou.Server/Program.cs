@@ -1,9 +1,11 @@
 using Ligueylou.Server.Data;
+using Ligueylou.Server.Identity;
 using Ligueylou.Server.Repository;
 using Ligueylou.Server.Services.Token;
 using Ligueylou.Server.Services.Utilisateurs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi;
+using System.Security.Claims;
 //using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +25,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddTransient<ITokenService, TokenService>();
 builder.Services.AddScoped<UtilisateurRepo>();
 builder.Services.AddScoped<IUtilisateurService, UtilisateurService>();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy(IdentityData.AdminPolicy, policy =>
+        policy.RequireClaim(ClaimTypes.Role, IdentityData.AdminRole));
+    options.AddPolicy(IdentityData.PrestatairePolicy, policy =>
+        policy.RequireClaim(ClaimTypes.Role, IdentityData.PrestataireRole));
+    options.AddPolicy(IdentityData.ClientPolicy, policy =>
+        policy.RequireClaim(ClaimTypes.Role, IdentityData.ClientRole));
+});
 
 builder.Services.AddControllers()
     .AddJsonOptions(o =>
