@@ -114,15 +114,17 @@ namespace Ligueylou.Server.Services.Utilisateurs
             bool passwordValid = BCrypt.Net.BCrypt.Verify(loginRequest.Password, user.Password);
             if (!passwordValid)
                 throw new UnauthorizedAccessException("Mot de passe incorrect");
+            user.DerniereConnexion = DateTime.UtcNow;
+            await _utilisateurRepo.UpdateUtilisateur(user);
 
             var claims = new[]
             {
-        new Claim(ClaimTypes.Name, user.Prenom ?? string.Empty),
-        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-        new Claim(ClaimTypes.Role, user.Role.ToString().ToLower()),
-        new Claim(JwtRegisteredClaimNames.GivenName, $"{user.Prenom} {user.Nom}"),
-        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-    };
+                new Claim(ClaimTypes.Name, user.Prenom ?? string.Empty),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Role, user.Role.ToString().ToLower()),
+                new Claim(JwtRegisteredClaimNames.GivenName, $"{user.Prenom} {user.Nom}"),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
 
             var (accessToken, expire) = _tokenService.GenerateAccessToken(claims);
             string refreshToken = _tokenService.GenerateRefreshToken();
