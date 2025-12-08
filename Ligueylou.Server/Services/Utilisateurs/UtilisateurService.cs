@@ -150,6 +150,29 @@ namespace Ligueylou.Server.Services.Utilisateurs
                 Utilisateur = userDto
             };
         }
+        public async Task<UtilisateurDto> UpdateUtilisateur(Guid id, CreateUtilisateurDto dto)
+        {
+            var user = await _utilisateurRepo.GetUtilisateurById(id);
+            if (user == null)
+                throw new Exception("Utilisateur non trouvé");
+
+            user.Prenom = dto.Prenom;
+            user.Nom = dto.Nom;
+            user.Email = dto.Email;
+            user.Telephone = dto.Telephone;
+            user.Sexe = dto.Sexe;
+            if (!string.IsNullOrEmpty(dto.Password))
+                user.Password = BCrypt.Net.BCrypt.HashPassword(dto.Password);
+
+            await _utilisateurRepo.UpdateUtilisateur(user);
+
+            return MapToDto(user);
+        }
+
+        public async Task DeleteUtilisateur(Guid id)
+        {
+            await _utilisateurRepo.DeleteUtilisateur(id);
+        }
 
         public async Task<UtilisateurDto> GetUtilisateurById(Guid id)
         {
