@@ -17,7 +17,7 @@ namespace Ligueylou.Server.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(CreateUtilisateurDto request)
+        public async Task<IActionResult> Register([FromBody] CreateUtilisateurDto request)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace Ligueylou.Server.Controllers
             }
         }
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginRequestDto request)
+        public async Task<IActionResult> Login([FromBody] LoginRequestDto request)
         {
             try
             {
