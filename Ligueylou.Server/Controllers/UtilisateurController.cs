@@ -37,8 +37,13 @@ namespace Ligueylou.Server.Controllers
                 var result = await _service.Login(request);
                 return Ok(result);
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(new { message = ex.Message });
+            }
             catch (Exception ex)
             {
+
                 return BadRequest(new { message = ex.Message });
             }
         }

@@ -34,11 +34,11 @@ namespace Ligueylou.Server.Services.Utilisateurs
         public async Task<ActionResult<UserRegisterResponse>> Register(CreateUtilisateurDto request)
         {
             if(request == null)
-                throw new ArgumentNullException(nameof(request));
+                throw new Exception(nameof(request));
             if(await _utilisateurRepo.EmailExist(request.Email))
-                throw new ArgumentException("Email deja utilisé ");
+                throw new Exception("Email deja utilisé ");
             if(await _utilisateurRepo.TelephoneExist(request.Telephone) && !string.IsNullOrEmpty(request.Telephone))
-                throw new ArgumentException("Telephone deja utilisé");
+                throw new Exception("Telephone deja utilisé");
             Utilisateur user = request.Role switch
             {
                 Models.Enums.RoleEnum.CLIENT => new Client(),
@@ -93,9 +93,9 @@ namespace Ligueylou.Server.Services.Utilisateurs
         public async Task<ActionResult<UserLoginResponse>> Login(LoginRequestDto loginRequest)
         {
             if(loginRequest == null) 
-                throw new ArgumentNullException(nameof(loginRequest));
+                throw new Exception(nameof(loginRequest));
             if(string.IsNullOrEmpty(loginRequest.Email) && string.IsNullOrEmpty(loginRequest.Telephone))
-                throw new ArgumentException("Email ou Téléphone requis");
+                throw new Exception("Email ou Téléphone requis");
             Utilisateur? user = null;
             if (!string.IsNullOrEmpty(loginRequest.Email))
             {

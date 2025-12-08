@@ -1,5 +1,10 @@
 using Ligueylou.Server.Data;
+using Ligueylou.Server.Repository;
+using Ligueylou.Server.Services.Token;
+using Ligueylou.Server.Services.Utilisateurs;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi;
+//using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,9 +20,21 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
             maxRetryDelay: TimeSpan.FromSeconds(15),
             errorNumbersToAdd: null);
         }));
+builder.Services.AddTransient<ITokenService, TokenService>();
+builder.Services.AddScoped<UtilisateurRepo>();
+builder.Services.AddScoped<IUtilisateurService, UtilisateurService>();
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(
+    c =>
+    {
+        c.SwaggerDoc("v1", new OpenApiInfo
+        {
+            Title = "Ligueylou API",
+            Version = "v1"
+        });
+    });
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
@@ -28,6 +45,11 @@ app.MapStaticAssets();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.RoutePrefix = "swagger";
+    });
     app.MapOpenApi();
 }
 
@@ -37,6 +59,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapFallbackToFile("/index.html");
+//app.MapFallbackToFile("/index.html");
+app.MapFallbackToFile("{*path:regex(^(?!api|swagger).*$)}", "index.html");
 
 app.Run();
