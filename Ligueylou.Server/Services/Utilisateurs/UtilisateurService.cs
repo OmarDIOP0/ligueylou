@@ -61,13 +61,15 @@ namespace Ligueylou.Server.Services.Utilisateurs
             user.Actif = true;
             user.DateCreation = DateTime.UtcNow;
             user.Password = BCrypt.Net.BCrypt.HashPassword(request.Password);
+            user.DerniereConnexion = DateTime.UtcNow;
+            await _utilisateurRepo.UpdateUtilisateur(user);
             await _utilisateurRepo.AddUtilisateur(user);
 
             var claims = new[]
             {
                 new Claim(ClaimTypes.Name, user.Prenom ?? string.Empty),
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Role, user.Role.ToString().ToLower()),
+                new Claim(ClaimTypes.Role, user.Role.ToString()),
                 new Claim(JwtRegisteredClaimNames.GivenName,$"{user.Prenom} {user.Nom}"),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
@@ -82,7 +84,7 @@ namespace Ligueylou.Server.Services.Utilisateurs
                 Expires = DateTime.UtcNow.AddDays(refreshTokenValidityInDays)
             };
             await _utilisateurRepo.AddRefreshToken(refreshTokenEntity);
-            user = await _utilisateurRepo.GetUtilisateurById(user.Id);
+            //user = await _utilisateurRepo.GetUtilisateurById(user.Id);
             var userDto = MapToDto(user);
             return new UserRegisterResponse
             {
@@ -102,8 +104,6 @@ namespace Ligueylou.Server.Services.Utilisateurs
                 throw new Exception("Email ou Téléphone requis");
 
             Utilisateur? user = null;
-            if (user.Actif == false)
-                throw new UnauthorizedAccessException("Compte utilisateur désactivé");
             if (!string.IsNullOrEmpty(loginRequest.Email))
                 user = await _utilisateurRepo.GetUtilisateurByEmail(loginRequest.Email);
             else if (!string.IsNullOrEmpty(loginRequest.Telephone))
@@ -111,6 +111,8 @@ namespace Ligueylou.Server.Services.Utilisateurs
 
             if (user == null)
                 throw new UnauthorizedAccessException("Email/Telephone ou Mot de passe incorrecte");
+            if (user.Actif == false)
+                throw new UnauthorizedAccessException("Compte utilisateur désactivé");
 
             bool passwordValid = BCrypt.Net.BCrypt.Verify(loginRequest.Password, user.Password);
             if (!passwordValid)
@@ -122,7 +124,7 @@ namespace Ligueylou.Server.Services.Utilisateurs
             {
                 new Claim(ClaimTypes.Name, user.Prenom ?? string.Empty),
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Role, user.Role.ToString().ToLower()),
+                new Claim(ClaimTypes.Role, user.Role.ToString()),
                 new Claim(JwtRegisteredClaimNames.GivenName, $"{user.Prenom} {user.Nom}"),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
@@ -139,7 +141,7 @@ namespace Ligueylou.Server.Services.Utilisateurs
                 Expires = DateTime.UtcNow.AddDays(refreshTokenValidityInDays)
             };
             await _utilisateurRepo.AddRefreshToken(refreshTokenEntity);
-            user = await _utilisateurRepo.GetUtilisateurById(user.Id);
+            //user = await _utilisateurRepo.GetUtilisateurById(user.Id);
             var userDto = MapToDto(user);
 
             return new UserLoginResponse

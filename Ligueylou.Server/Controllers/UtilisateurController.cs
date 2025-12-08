@@ -1,4 +1,5 @@
-﻿using Ligueylou.Server.Request;
+﻿using Ligueylou.Server.Identity;
+using Ligueylou.Server.Request;
 using Ligueylou.Server.Services.Utilisateurs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -116,7 +117,7 @@ namespace Ligueylou.Server.Controllers
             var user = await _service.GetUtilisateurByTelephone(telephone);
             return user == null ? NotFound() : Ok(user);
         }
-        [Authorize]
+        [Authorize(Policy = IdentityData.AdminPolicy)]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
