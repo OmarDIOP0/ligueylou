@@ -1,5 +1,6 @@
 ﻿using Ligueylou.Server.Request;
 using Ligueylou.Server.Services.Utilisateurs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -47,6 +48,7 @@ namespace Ligueylou.Server.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUtilisateur(Guid id, [FromBody] CreateUtilisateurDto dto)
         {
@@ -60,7 +62,7 @@ namespace Ligueylou.Server.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUtilisateur(Guid id)
         {
@@ -74,7 +76,25 @@ namespace Ligueylou.Server.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize]
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            try
+            {
+                var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+                if (string.IsNullOrEmpty(userId))
+                    return Unauthorized();
 
+                await _service.Logout(Guid.Parse(userId));
+                return Ok(new { message = "Déconnexion réussie" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [Authorize]
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> Get(Guid id)
         {
@@ -82,19 +102,21 @@ namespace Ligueylou.Server.Controllers
             return user == null ? NotFound() : Ok(user);
         }
 
+        [Authorize]
         [HttpGet("email/{email}")]
         public async Task<IActionResult> GetByEmail(string email)
         {
             var user = await _service.GetUtilisateurByEmail(email);
             return user == null ? NotFound() : Ok(user);
         }
+        [Authorize]
         [HttpGet("telephone/{telephone}")]
         public async Task<IActionResult> GetByTelephone(string telephone)
         {
             var user = await _service.GetUtilisateurByTelephone(telephone);
             return user == null ? NotFound() : Ok(user);
         }
-
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {

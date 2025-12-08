@@ -33,7 +33,7 @@ namespace Ligueylou.Server.Services.Utilisateurs
         }
         public async Task<UserRegisterResponse> Register(CreateUtilisateurDto request)
         {
-            if(request == null)
+            if (request == null)
                 throw new Exception(nameof(request));
             if (!string.IsNullOrEmpty(request.Email) && await _utilisateurRepo.EmailExist(request.Email))
                 throw new Exception("L'adresse email est deja utilisé");
@@ -76,7 +76,7 @@ namespace Ligueylou.Server.Services.Utilisateurs
             _ = int.TryParse(_config["Jwt:RefreshTokenValidityInDays"], out int refreshTokenValidityInDays);
             var refreshTokenEntity = new RefreshToken
             {
-                UserName =user.Id + user.Nom + user.Prenom,
+                UserName = user.Id + user.Nom + user.Prenom,
                 Refresh_Token = refreshToken,
                 Created = DateTime.UtcNow,
                 Expires = DateTime.UtcNow.AddDays(refreshTokenValidityInDays)
@@ -102,7 +102,7 @@ namespace Ligueylou.Server.Services.Utilisateurs
                 throw new Exception("Email ou Téléphone requis");
 
             Utilisateur? user = null;
-            if(user.Actif == false)
+            if (user.Actif == false)
                 throw new UnauthorizedAccessException("Compte utilisateur désactivé");
             if (!string.IsNullOrEmpty(loginRequest.Email))
                 user = await _utilisateurRepo.GetUtilisateurByEmail(loginRequest.Email);
@@ -302,5 +302,15 @@ namespace Ligueylou.Server.Services.Utilisateurs
             };
         }
 
+        public async Task Logout(Guid id)
+        {
+            var user = await _utilisateurRepo.GetUtilisateurById(id);
+            if (user == null)
+            {
+                throw new Exception("Utilisateur non trouvé");
+            }
+            user.DerniereConnexion = DateTime.UtcNow;
+            await _utilisateurRepo.UpdateUtilisateur(user);
+        }
     }
 }

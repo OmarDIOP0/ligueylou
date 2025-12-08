@@ -12,6 +12,7 @@ namespace Ligueylou.Server.Services.Utilisateurs
         Task<UserLoginResponse> Login(LoginRequestDto loginRequest);
         Task<UtilisateurDto> UpdateUtilisateur(Guid id, CreateUtilisateurDto dto);
         Task DeleteUtilisateur(Guid id);
+        Task Logout(Guid id);
         Task<UtilisateurDto> GetUtilisateurById(Guid id);
         Task<UtilisateurDto> GetUtilisateurByEmail(string email);
         Task<UtilisateurDto> GetUtilisateurByTelephone(string telephone);
