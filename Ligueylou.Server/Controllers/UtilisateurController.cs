@@ -47,6 +47,33 @@ namespace Ligueylou.Server.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUtilisateur(Guid id, [FromBody] CreateUtilisateurDto dto)
+        {
+            try
+            {
+                var updatedUser = await _service.UpdateUtilisateur(id, dto);
+                return Ok(updatedUser);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUtilisateur(Guid id)
+        {
+            try
+            {
+                await _service.DeleteUtilisateur(id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> Get(Guid id)
