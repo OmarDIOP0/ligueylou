@@ -190,6 +190,20 @@ namespace Ligueylou.Server.Repository
 
             client.Evaluations.Add(evaluation);
             await _context.SaveChangesAsync();
+            var service = await _context.Services
+                            .Include(s => s.Prestataire)
+                            .Include(s => s.Evaluations)
+                            .FirstOrDefaultAsync(s => s.Id == evaluation.ServiceId);
+
+            if (service != null)
+            {
+                var prestataire = service.Prestataire;
+                var allEvaluations = _context.Evaluations
+                    .Where(e => e.Service.PrestataireId == prestataire.Id);
+
+                prestataire.Score = allEvaluations.Any() ? await allEvaluations.AverageAsync(e => e.Score) : 0;
+                await _context.SaveChangesAsync();
+            }
 
             return client;
         }

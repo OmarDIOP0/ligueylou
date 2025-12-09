@@ -19,7 +19,7 @@ namespace Ligueylou.Server.Services.Prestataires
         Task<PrestataireDto?> ActivatePrestataire(Guid id);
 
         Task<double?> GetScore(Guid id);
-        Task<PrestataireDto?> UpdateScore(Guid id, double score);
+        Task<PrestataireDto?> UpdateScore(Guid id);
 
         Task<IEnumerable<PrestataireDto>> SearchByName(string name);
         Task<IEnumerable<PrestataireDto>> Filter(string? ville, string? specialite, bool? actif);

@@ -146,9 +146,9 @@ namespace Ligueylou.Server.Controllers
         }
 
         [HttpPut("{id:guid}/score")]
-        public async Task<IActionResult> UpdateScore(Guid id, [FromBody] double score)
+        public async Task<IActionResult> UpdateScore(Guid id)
         {
-            var p = await _service.UpdateScore(id, score);
+            var p = await _service.UpdateScore(id);
             return p == null ? NotFound() : Ok(p);
         }
 

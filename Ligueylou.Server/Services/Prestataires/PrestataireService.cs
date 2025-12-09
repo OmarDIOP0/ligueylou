@@ -138,9 +138,9 @@ namespace Ligueylou.Server.Services.Prestataires
             return await _prestataireRepo.GetPrestataireScore(id);
         }
 
-        public async Task<PrestataireDto?> UpdateScore(Guid id, double score)
+        public async Task<PrestataireDto?> UpdateScore(Guid id)
         {
-            var p = await _prestataireRepo.UpdatePrestataireScore(id, score);
+            var p = await _prestataireRepo.UpdatePrestataireScore(id);
             return p != null ? MapToDto(p) : null;
         }
 

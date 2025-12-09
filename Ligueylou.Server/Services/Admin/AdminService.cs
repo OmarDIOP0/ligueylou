@@ -25,7 +25,6 @@ namespace Ligueylou.Server.Services.Administrateurs
                 Sexe = a.Sexe,
                 Role = a.Role,
                 Actif = a.Actif,
-                Adresse = a.Adresse,
                 DateCreation = a.DateCreation
             };
 
