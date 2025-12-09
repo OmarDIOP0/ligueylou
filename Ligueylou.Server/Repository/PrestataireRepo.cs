@@ -188,13 +188,26 @@ namespace Ligueylou.Server.Repository
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<Prestataire?> UpdatePrestataireScore(Guid id, double score)
+        public async Task<Prestataire?> UpdatePrestataireScore(Guid prestataireId)
         {
-            var prestataire = await _context.Prestataires.FindAsync(id);
-            if (prestataire == null)
-                return null;
+            var prestataire = await _context.Prestataires
+                        .Include(p => p.Services)
+                        .ThenInclude(s => s.Evaluations)
+                        .FirstOrDefaultAsync(p => p.Id == prestataireId);
+            if (prestataire == null) return null;
 
-            prestataire.Score = (prestataire.Score + score) / 2;
+            var evaluations = prestataire.Services
+                        .SelectMany(s => s.Evaluations)
+                        .ToList();
+            if(evaluations.Count == 0)
+            {
+                prestataire.Score = 0;
+            }
+            else
+            {
+                prestataire.Score = evaluations.Average(e => e.Score);
+
+            }
             await _context.SaveChangesAsync();
 
             return prestataire;
