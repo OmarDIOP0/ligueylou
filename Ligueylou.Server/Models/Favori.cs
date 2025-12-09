@@ -5,6 +5,8 @@ namespace Ligueylou.Server.Models
     public class Favori
     {
         [Key]
+        public Guid Id { get; set; } = new Guid();
+        [Key]
         public Guid PrestataireId { get; set; }
         [Key]
         public Guid ClientId { get; set; }
