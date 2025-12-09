@@ -1,4 +1,7 @@
-﻿namespace Ligueylou.Server.Services
+﻿using Ligueylou.Server.Dtos;
+using Ligueylou.Server.Models;
+
+namespace Ligueylou.Server.Services.Prestataires
 {
     public interface IPrestataireService
     {
