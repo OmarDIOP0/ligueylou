@@ -7,4 +7,26 @@
     <!-- Folder where production build objects will be placed -->
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\ligueylou.client\browser\</BuildOutputFolder>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="src\app\core\guards\" />
+    <Folder Include="src\app\core\interceptors\" />
+    <Folder Include="src\app\core\models\" />
+    <Folder Include="src\app\core\services\" />
+    <Folder Include="src\app\features\admin\components\" />
+    <Folder Include="src\app\features\admin\pages\" />
+    <Folder Include="src\app\features\admin\services\" />
+    <Folder Include="src\app\features\auth\components\" />
+    <Folder Include="src\app\features\auth\services\" />
+    <Folder Include="src\app\features\auth\pages\" />
+    <Folder Include="src\app\features\client\components\" />
+    <Folder Include="src\app\features\client\services\" />
+    <Folder Include="src\app\features\client\pages\" />
+    <Folder Include="src\app\features\prestataire\components\" />
+    <Folder Include="src\app\features\prestataire\services\" />
+    <Folder Include="src\app\features\prestataire\pages\" />
+    <Folder Include="src\app\shared\components\" />
+    <Folder Include="src\app\shared\utilis\" />
+    <Folder Include="src\assets\" />
+    <Folder Include="src\environments\" />
+  </ItemGroup>
 </Project>
