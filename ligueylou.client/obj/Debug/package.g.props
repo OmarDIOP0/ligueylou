@@ -21,6 +21,7 @@
     <PackageJsonDependenciesAngularPlatformBrowserDynamic Condition="$(PackageJsonDependenciesAngularPlatformBrowserDynamic) == ''">^19.1.0</PackageJsonDependenciesAngularPlatformBrowserDynamic>
     <PackageJsonDependenciesAngularRouter Condition="$(PackageJsonDependenciesAngularRouter) == ''">^19.1.0</PackageJsonDependenciesAngularRouter>
     <PackageJsonDependenciesTailwindcssPostcss Condition="$(PackageJsonDependenciesTailwindcssPostcss) == ''">^4.1.17</PackageJsonDependenciesTailwindcssPostcss>
+    <PackageJsonDependenciesDaisyui Condition="$(PackageJsonDependenciesDaisyui) == ''">^5.5.11</PackageJsonDependenciesDaisyui>
     <PackageJsonDependenciesJestEditorSupport Condition="$(PackageJsonDependenciesJestEditorSupport) == ''">*</PackageJsonDependenciesJestEditorSupport>
     <PackageJsonDependenciesPostcss Condition="$(PackageJsonDependenciesPostcss) == ''">^8.5.6</PackageJsonDependenciesPostcss>
     <PackageJsonDependenciesRunScriptOs Condition="$(PackageJsonDependenciesRunScriptOs) == ''">*</PackageJsonDependenciesRunScriptOs>
