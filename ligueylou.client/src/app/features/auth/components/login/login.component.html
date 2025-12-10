@@ -1,0 +1,158 @@
+<div class="flex flex-col min-h-screen">
+
+  <!-- HEADER -->
+  <header class="w-full border-b bg-white">
+    <div class="container mx-auto flex h-16 items-center px-4">
+      <a routerLink="/" class="flex items-center gap-2">
+        <span class="text-green-500 text-3xl">🛡️</span>
+        <span class="text-xl font-bold">LIGUEYLU</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="flex-1 flex items-center justify-center py-12 bg-gradient-to-r from-green-50 to-emerald-50">
+    <div class="container mx-auto px-4 flex justify-center">
+
+      <div class="card w-full max-w-md bg-white shadow-lg">
+        <div class="card-body">
+
+          <h2 class="card-title text-2xl font-bold text-center">Connexion</h2>
+          <p class="text-center text-gray-500 mb-4">
+            Connectez-vous pour accéder aux services
+          </p>
+
+          <!-- TABS -->
+          <div role="tablist" class="tabs tabs-boxed mb-6">
+            <a role="tab"
+               (click)="activeTab='email'"
+               [class.tab-active]="activeTab==='email'"
+               class="tab">Email</a>
+
+            <a role="tab"
+               (click)="activeTab='phone'"
+               [class.tab-active]="activeTab==='phone'"
+               class="tab">Téléphone</a>
+          </div>
+
+          <!-- TAB EMAIL -->
+          <form *ngIf="activeTab==='email'">
+            <div class="space-y-4">
+
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Email</span>
+                </label>
+                <input type="email"
+                       class="input input-bordered border-green-200 focus:border-green-500"
+                       placeholder="exemple@email.com"
+                       [(ngModel)]="email"
+                       name="email"
+                       required />
+              </div>
+
+              <div class="form-control">
+                <label class="label flex justify-between">
+                  <span class="label-text">Mot de passe</span>
+                  <a routerLink="/forgot-password" class="text-sm text-green-600 hover:text-green-700">Oublié ?</a>
+                </label>
+
+                <div class="relative">
+                  <input [type]="showPassword ? 'text' : 'password'"
+                         class="input input-bordered w-full pr-12 border-green-200 focus:border-green-500"
+                         [(ngModel)]="password"
+                         name="password"
+                         required />
+
+                  <button type="button"
+                          class="absolute right-2 top-2 btn btn-sm btn-ghost"
+                          (click)="showPassword = !showPassword">
+                    👁️
+                  </button>
+                </div>
+              </div>
+
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox"
+                       class="checkbox checkbox-sm"
+                       [(ngModel)]="remember"
+                       name="remember" />
+                <span class="text-sm">Se souvenir de moi</span>
+              </label>
+
+              <button class="btn w-full bg-green-500 hover:bg-green-600 text-white">
+                Se connecter
+              </button>
+            </div>
+          </form>
+
+          <!-- TAB PHONE -->
+          <form *ngIf="activeTab==='phone'" (ngSubmit)="loginWithPhone()">
+            <div class="space-y-4">
+
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Numéro de téléphone</span>
+                </label>
+                <input type="tel"
+                       class="input input-bordered border-green-200 focus:border-green-500"
+                       placeholder="77 123 45 67"
+                       [(ngModel)]="phone"
+                       name="phone"
+                       required />
+              </div>
+
+              <button class="btn w-full bg-green-500 hover:bg-green-600 text-white">
+                Recevoir un code
+              </button>
+            </div>
+          </form>
+
+          <!-- Divider -->
+          <div class="divider">Ou continuer avec</div>
+
+          <!-- SOCIAL -->
+          <div class="grid grid-cols-2 gap-4">
+            <button class="btn btn-outline w-full">
+              👍 Facebook
+            </button>
+            <button class="btn btn-outline w-full">
+              🐦 Twitter
+            </button>
+          </div>
+
+          <!-- FOOTER LINKS -->
+          <div class="mt-6 text-center text-sm">
+            Pas de compte ?
+            <a routerLink="/register" class="text-green-600 hover:text-green-700 font-medium">
+              S'inscrire
+            </a>
+          </div>
+
+          <div class="mt-2 text-center text-sm">
+            <a routerLink="/admin/login" class="text-red-600 hover:text-red-700 font-medium">
+              Accès administrateur
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="w-full py-6 bg-white border-t">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-sm text-gray-500">© 2025 LIGUEYLU. Tous droits réservés.</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+          <a class="text-sm text-gray-500 hover:text-green-600">Conditions</a>
+          <a class="text-sm text-gray-500 hover:text-green-600">Confidentialité</a>
+          <a class="text-sm text-gray-500 hover:text-green-600">Aide</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>

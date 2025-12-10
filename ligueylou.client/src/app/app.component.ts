@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 interface WeatherForecast {
   date: string;
@@ -10,8 +11,9 @@ interface WeatherForecast {
 
 @Component({
   selector: 'app-root',
+  imports: [RouterModule],
   templateUrl: './app.component.html',
-  standalone: false,
+  standalone: true,
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
