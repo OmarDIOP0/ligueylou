@@ -11,19 +11,79 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  activeTab = 'email';
-  email = '';
-  password = '';
-  phone = '';
-  remember = false;
+  activeTab: 'email' | 'phone' = 'email';
   showPassword = false;
+  loading = false;
+  currentYear: number;
 
-  loginWithEmail() {
-    console.log('Email login', this.email, this.password, this.remember);
+  formData = {
+    email: '',
+    password: '',
+    phone: '',
+    remember: false
+  };
+
+  constructor() {
+    this.currentYear = new Date().getFullYear();
   }
 
-  loginWithPhone() {
-    console.log('Phone login', this.phone);
+  ngOnInit(): void {
+    // Initialisation si nécessaire
+  }
+
+  setActiveTab(tab: 'email' | 'phone'): void {
+    this.activeTab = tab;
+  }
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
+
+  handleEmailLogin(): void {
+    if (this.loading) return;
+
+    this.loading = true;
+    console.log('Email login attempt:', this.formData.email);
+
+    // Simuler une requête API
+    setTimeout(() => {
+      this.loading = false;
+      // Ici, vous ajouteriez la logique de connexion réelle
+      // this.authService.login(this.formData.email, this.formData.password);
+    }, 1500);
+  }
+
+  handlePhoneLogin(): void {
+    if (this.loading) return;
+
+    this.loading = true;
+    console.log('Phone login attempt:', this.formData.phone);
+
+    // Simuler l'envoi de code
+    setTimeout(() => {
+      this.loading = false;
+      // Ici, vous ajouteriez la logique d'envoi de code par SMS
+    }, 1500);
+  }
+
+  loginWithFacebook(): void {
+    this.loading = true;
+    console.log('Facebook login attempt');
+
+    setTimeout(() => {
+      this.loading = false;
+      // Intégration Facebook OAuth
+    }, 1500);
+  }
+
+  loginWithTwitter(): void {
+    this.loading = true;
+    console.log('Twitter login attempt');
+
+    setTimeout(() => {
+      this.loading = false;
+      // Intégration Twitter OAuth
+    }, 1500);
   }
 
 
