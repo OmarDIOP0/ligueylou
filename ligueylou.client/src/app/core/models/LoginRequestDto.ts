@@ -1,5 +1,5 @@
 export interface LoginRequestDto {
-  email?: string,
-  telephone?: string,
+  email?: string;
+  telephone?: string;
   password: string
 }
