@@ -26,7 +26,7 @@
 
           <!-- Tabs using DaisyUI -->
           <div class="mb-8">
-            <div class="tabs tabs-boxed bg-gray-100 p-1 w-full grid grid-cols-2">
+            <div class="tabs tabs-box p-1 w-full grid grid-cols-2">
               <input type="radio"
                      name="login_tabs"
                      class="tab"
@@ -41,7 +41,6 @@
                      (change)="setActiveTab('phone')" />
             </div>
           </div>
-
           <!-- EMAIL FORM -->
           @if (activeTab === 'email') {
           <div class="mt-2">
@@ -165,7 +164,7 @@
                     (click)="loginWithTwitter()"
                     [disabled]="loading">
               <span class="text-lg">🐦</span>
-              <span>Twitter</span>
+              <span>Google</span>
             </button>
           </div>
 
