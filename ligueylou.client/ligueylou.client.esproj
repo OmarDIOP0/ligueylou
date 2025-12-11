@@ -8,9 +8,9 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\ligueylou.client\browser\</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="src\app\core\config\" />
     <Folder Include="src\app\core\guards\" />
     <Folder Include="src\app\core\interceptors\" />
-    <Folder Include="src\app\core\models\" />
     <Folder Include="src\app\core\services\" />
     <Folder Include="src\app\features\admin\components\" />
     <Folder Include="src\app\features\admin\pages\" />
