@@ -38,14 +38,11 @@ export class TokenService {
     return u ? JSON.parse(u) : null;
   }
   setAuth(res: AuthResponse) {
-    console.log('Storing auth data:', res);
     this._token.set(res.token);
     this._refreshToken.set(res.refreshToken);
     localStorage.setItem(this.TOKEN_KEY, res.token);
     localStorage.setItem(this.REFRESH_TOKEN_KEY, res.refreshToken);
     localStorage.setItem(this.USER_KEY, JSON.stringify(res.utilisateur));
-    console.log('Token stored:', localStorage.getItem(this.TOKEN_KEY)?.substring(0, 20) + '...');
-    console.log('User stored:', localStorage.getItem(this.USER_KEY));
   }
 
   setToken(token: string, refresh: string) {
@@ -53,6 +50,10 @@ export class TokenService {
 
     localStorage.setItem(this.TOKEN_KEY, token);
     localStorage.setItem(this.REFRESH_TOKEN_KEY, refresh);
+  }
+  updateTokens(token: string, refresh: string) {
+    localStorage.setItem('access_token', token);
+    localStorage.setItem('refresh_token', refresh);
   }
 
   clearToken() {
