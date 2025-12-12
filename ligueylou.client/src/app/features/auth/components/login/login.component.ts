@@ -55,7 +55,6 @@ export class LoginComponent {
     }).subscribe({
       next: (res) => {
         this.loading.set(false);
-        //this.authService.handleAuthSuccess(res);
         switch (res.utilisateur.role) {
           case RoleEnum.ADMIN:
             this.router.navigate(['/admin/dashboard']);
