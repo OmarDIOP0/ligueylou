@@ -20,6 +20,7 @@
     <PackageJsonDependenciesAngularPlatformBrowser Condition="$(PackageJsonDependenciesAngularPlatformBrowser) == ''">^19.1.0</PackageJsonDependenciesAngularPlatformBrowser>
     <PackageJsonDependenciesAngularPlatformBrowserDynamic Condition="$(PackageJsonDependenciesAngularPlatformBrowserDynamic) == ''">^19.1.0</PackageJsonDependenciesAngularPlatformBrowserDynamic>
     <PackageJsonDependenciesAngularRouter Condition="$(PackageJsonDependenciesAngularRouter) == ''">^19.1.0</PackageJsonDependenciesAngularRouter>
+    <PackageJsonDependenciesAuth0AngularJwt Condition="$(PackageJsonDependenciesAuth0AngularJwt) == ''">^5.2.0</PackageJsonDependenciesAuth0AngularJwt>
     <PackageJsonDependenciesTailwindcssPostcss Condition="$(PackageJsonDependenciesTailwindcssPostcss) == ''">^4.1.17</PackageJsonDependenciesTailwindcssPostcss>
     <PackageJsonDependenciesDaisyui Condition="$(PackageJsonDependenciesDaisyui) == ''">^5.5.11</PackageJsonDependenciesDaisyui>
     <PackageJsonDependenciesJestEditorSupport Condition="$(PackageJsonDependenciesJestEditorSupport) == ''">*</PackageJsonDependenciesJestEditorSupport>
