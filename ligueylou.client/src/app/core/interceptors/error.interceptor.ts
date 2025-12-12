@@ -10,10 +10,10 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError(err => {
 
-      if (err.status === 401) {
-        tokenService.clearToken();
-        setTimeout(() => router.navigate(['/login']), 0);
-      }
+      //if (err.status === 401) {
+      //  tokenService.clearToken();
+      //  setTimeout(() => router.navigate(['/login']), 0);
+      //}
 
       if (err.status === 403) {
         setTimeout(() => router.navigate(['/unauthorized']), 0);

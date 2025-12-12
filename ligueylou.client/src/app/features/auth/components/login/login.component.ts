@@ -56,20 +56,18 @@ export class LoginComponent {
       next: (res) => {
         this.loading.set(false);
         //this.authService.handleAuthSuccess(res);
-
-        // Navigation selon le rôle
         switch (res.utilisateur.role) {
           case RoleEnum.ADMIN:
-            this.router.navigate(['/admin/dashboard']); // parent admin
+            this.router.navigate(['/admin/dashboard']);
             break;
           case RoleEnum.PRESTATAIRE:
-            this.router.navigate(['/prestataire']); // parent prestataire
+            this.router.navigate(['/prestataire/dashboard']); 
             break;
           case RoleEnum.CLIENT:
-            this.router.navigate(['/client']); // parent client
+            this.router.navigate(['/client/dashboard']); 
             break;
           default:
-            this.router.navigate(['/login']); // fallback
+            this.router.navigate(['/login']); 
         }
       },
       error: (err) => {
