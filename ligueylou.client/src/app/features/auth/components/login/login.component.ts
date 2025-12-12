@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormBuilder, FormsModule } from '@angular/forms';
 import { AuthService } from '../../../../core/services/auth.service';
+import { RoleEnum } from '../../../../core/models/user.enums';
 
 @Component({
   selector: 'app-login',
@@ -11,15 +12,17 @@ import { AuthService } from '../../../../core/services/auth.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
+
 export class LoginComponent {
   activeTab: 'email' | 'phone' = 'email';
   showPassword = false;
   currentYear: number;
+  private router = inject(Router);
 
   formData = {
     email: '',
     password: '',
-    phone: '',
+    telephone: '',
     remember: false
   };
   private fb = inject(FormBuilder);
@@ -43,30 +46,42 @@ export class LoginComponent {
   }
 
   handleEmailLogin(): void {
+    this.error.set(null);
     this.loading.set(true);
-    console.log('Email login attempt:', this.formData.email);
 
-    
-    setTimeout(() => {
-      this.loading.set(false);
-      this.authService.login(this.formData).subscribe({
-        next: (res) => {
-          //this.authService.handleAuthSuccess(res);
-          this.loading.set(false);
-        },
-        error: (err) => {
-          this.loading.set(false);
-          this.error.set(err.error?.message || "Erreur");
+    this.authService.login({
+      email: this.formData.email,
+      password: this.formData.password
+    }).subscribe({
+      next: (res) => {
+        this.loading.set(false);
+        this.authService.handleAuthSuccess(res);
+
+        if (res.utilisateur.role === RoleEnum.ADMIN) {
+          this.router.navigate(['/dashboard/admin']);
+          console.log("Connexion de l'admin");
+        } else if (res.utilisateur.role === RoleEnum.PRESTATAIRE) {
+          this.router.navigate(['/dashboard/prestataire']);
+          console.log("Connexion de l'admin");
         }
-      })
-      // this.authService.login(this.formData.email, this.formData.password);
-    }, 1500);
+
+        else {
+          this.router.navigate(['/dashboard/client']);
+
+        }
+      },
+      error: (err) => {
+        this.loading.set(false);
+        this.error.set(err.error?.message || "Identifiants incorrects.");
+      }
+    });
   }
+
 
   handlePhoneLogin(): void {
 
     this.loading.set(true);
-    console.log('Phone login attempt:', this.formData.phone);
+    console.log('Phone login attempt:', this.formData.telephone);
 
     // Simuler l'envoi de code
     setTimeout(() => {

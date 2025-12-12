@@ -27,7 +27,7 @@ export class AuthService {
   }
 
   login(payload: LoginRequestDto) {
-    return this.http.post(this.AUTH_ENDPOINTS.login, payload)
+    return this.http.post < AuthResponse>(this.AUTH_ENDPOINTS.login, payload)
       .pipe(
         tap(res => this.tokenService.setAuth(res)),
         catchError(err => throwError(() => err))
