@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-prestataire',
   standalone: true,
-  import: [RouterModule],
+  imports: [RouterModule],
   templateUrl: './prestataire.component.html',
   styleUrl: './prestataire.component.css'
 })
