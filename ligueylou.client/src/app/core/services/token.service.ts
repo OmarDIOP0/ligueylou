@@ -3,10 +3,6 @@ import { jwtDecode } from 'jwt-decode';
 import { AuthResponse } from '../models/AuthResponse';
 import { UtilisateurDto } from '../models/UtilisateurDto';
 
-interface JwtPayload {
-  role: number;
-  exp: number;
-}
 
 @Injectable({
   providedIn: 'root'
