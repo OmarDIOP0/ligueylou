@@ -46,10 +46,19 @@ export class LoginComponent {
     this.loading.set(true);
     console.log('Email login attempt:', this.formData.email);
 
-    // Simuler une requête API
+    
     setTimeout(() => {
       this.loading.set(false);
-      // Ici, vous ajouteriez la logique de connexion réelle
+      this.authService.login(this.formData).subscribe({
+        next: (res) => {
+          //this.authService.handleAuthSuccess(res);
+          this.loading.set(false);
+        },
+        error: (err) => {
+          this.loading.set(false);
+          this.error.set(err.error?.message || "Erreur");
+        }
+      })
       // this.authService.login(this.formData.email, this.formData.password);
     }, 1500);
   }
