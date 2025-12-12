@@ -51,6 +51,7 @@ export class TokenService {
     localStorage.setItem(this.TOKEN_KEY, token);
     localStorage.setItem(this.REFRESH_TOKEN_KEY, refresh);
   }
+
   updateTokens(token: string, refresh: string) {
     localStorage.setItem('access_token', token);
     localStorage.setItem('refresh_token', refresh);

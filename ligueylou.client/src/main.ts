@@ -5,12 +5,13 @@ import { routes } from './app/app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import {jwtInterceptor } from './app/core/interceptors/jwt.interceptor';
 import { errorInterceptor } from './app/core/interceptors/error.interceptor';
+import { refreshInterceptor } from './app/core/interceptors/refresh.interceptor';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
     provideHttpClient(
-      withInterceptors([jwtInterceptor,errorInterceptor])
+      withInterceptors([jwtInterceptor,refreshInterceptor])
     )
   ]
 });
