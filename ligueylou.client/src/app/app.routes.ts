@@ -15,8 +15,7 @@ export const routes: Routes = [
     data: { roles: [RoleEnum.ADMIN] },
     component: AdminComponent,
     children: [
-      { path: '', redirectTo: 'adminDashboard', pathMatch: 'full' },
-      { path: '',component: AdminDashboardComponent}
+      { path: 'dashboard', component: AdminDashboardComponent },
     ]
   },
 

@@ -1,8 +1,9 @@
 export enum RoleEnum {
-  CLIENT = 0,
-  PRESTATAIRE = 1,
-  ADMIN = 2
+  ADMIN = 'ADMIN',
+  PRESTATAIRE = 'PRESTATAIRE',
+  CLIENT = 'CLIENT'
 }
+
 export enum SexeEnum {
   HOMME = 0,
   FEMME = 1

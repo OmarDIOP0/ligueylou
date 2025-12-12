@@ -66,21 +66,5 @@ export class TokenService {
     localStorage.removeItem(this.REFRESH_TOKEN_KEY);
     localStorage.removeItem(this.USER_KEY);
   }
-  getPayload(): JwtPayload | null {
-    const token = this.getToken();
-    if (!token) return null;
-    try {
-      return jwtDecode<JwtPayload>(token);
-    } catch {
-      return null;
-    }
-  }
-  isExpired(): boolean {
-    const payload = this.getPayload();
-    if (!payload) return true;
-    return Date.now() > payload.exp * 1000;
-  }
-  getRole(): number | null {
-    return this.getPayload()?.role ?? null;
-  }
+
 }

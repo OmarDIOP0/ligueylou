@@ -55,12 +55,12 @@ export class LoginComponent {
     }).subscribe({
       next: (res) => {
         this.loading.set(false);
-        this.authService.handleAuthSuccess(res);
+        //this.authService.handleAuthSuccess(res);
 
         // Navigation selon le rôle
         switch (res.utilisateur.role) {
           case RoleEnum.ADMIN:
-            this.router.navigate(['/admin']); // parent admin
+            this.router.navigate(['/admin/dashboard']); // parent admin
             break;
           case RoleEnum.PRESTATAIRE:
             this.router.navigate(['/prestataire']); // parent prestataire

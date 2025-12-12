@@ -2,6 +2,7 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { TokenService } from '../services/token.service';
 import { JwtHelperService } from '@auth0/angular-jwt'; 
+import { RoleEnum } from '../models/user.enums';
 
 const jwtHelper = new JwtHelperService();
 export const authGuard: CanActivateFn = (route, state) => {
@@ -16,13 +17,15 @@ export const authGuard: CanActivateFn = (route, state) => {
     tokenService.clearToken();
     return router.createUrlTree(['/login']);
   }
-  const allowedRoles = route.data?.['roles'] as number[] | undefined;
-  if (allowedRoles && allowedRoles.length > 0) {
-    const user = tokenService.getUser(); 
+  const allowedRoles = route.data?.['roles'] as RoleEnum[] | undefined;
+
+  if (allowedRoles) {
+    const user = tokenService.getUser();
     if (!user || !allowedRoles.includes(user.role)) {
       return router.createUrlTree(['/unauthorized']);
     }
   }
+
 
   return true;
 };
