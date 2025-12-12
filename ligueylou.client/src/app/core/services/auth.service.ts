@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { TokenService } from './token.service';
 import { ApiEndpointsService } from '../config/api-endpoints.service';
-import { catchError, throwError } from 'rxjs';
+import { catchError, tap, throwError } from 'rxjs';
 import { RegisterRequestDto } from '../models/RegisterRequestDto';
 import { LoginRequestDto } from '../models/LoginRequestDto';
 import { AuthResponse } from '../models/AuthResponse';
@@ -29,11 +29,9 @@ export class AuthService {
   login(payload: LoginRequestDto) {
     return this.http.post(this.AUTH_ENDPOINTS.login, payload)
       .pipe(
-        catchError(err => {
-          console.error('Erreur API login', err);
-          return throwError(() => new Error('Impossible de se connecter avec ces informations.'));
-        }
-        ));
+        tap(res => this.tokenService.setAuth(res)),
+        catchError(err => throwError(() => err))
+      );
   }
   handleAuthSuccess(res: AuthResponse) {
     this.tokenService.setToken(res.token, res.refreshToken);

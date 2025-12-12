@@ -1,5 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
+import { AuthResponse } from '../models/AuthResponse';
+import { UtilisateurDto } from '../models/UtilisateurDto';
 
 interface JwtPayload {
   role: number;
@@ -16,6 +18,7 @@ export class TokenService {
   private readonly TOKEN_KEY = 'access_token';
   private readonly REFRESH_TOKEN_KEY = 'refresh_token';
   private readonly EXPIRED_TOKEN_KEY = 'expired_token';
+  private USER_KEY = 'user_info';
 
   private _token = signal<string | null>(localStorage.getItem(this.TOKEN_KEY));
   private _refreshToken = signal<string | null>(localStorage.getItem(this.REFRESH_TOKEN_KEY));
@@ -28,7 +31,19 @@ export class TokenService {
   
 
   getToken(): string | null {
-    return this._token();
+    return localStorage.getItem(this.TOKEN_KEY);
+  }
+  getRefreshToken(): string | null {
+    return localStorage.getItem(this.REFRESH_TOKEN_KEY);
+  }
+  getUser(): UtilisateurDto | null {
+    const u = localStorage.getItem(this.USER_KEY);
+    return u ? JSON.parse(u) : null;
+  }
+  setAuth(res: AuthResponse) {
+    localStorage.setItem(this.TOKEN_KEY, res.token);
+    localStorage.setItem(this.REFRESH_TOKEN_KEY, res.refreshToken);
+    localStorage.setItem(this.USER_KEY, JSON.stringify(res.utilisateur));
   }
 
   setToken(token: string, refresh: string) {
@@ -43,6 +58,7 @@ export class TokenService {
 
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem(this.REFRESH_TOKEN_KEY);
+    localStorage.removeItem(this.USER_KEY);
   }
   getPayload(): JwtPayload | null {
     const token = this.getToken();
