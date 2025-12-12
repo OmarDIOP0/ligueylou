@@ -79,15 +79,32 @@ export class LoginComponent {
 
 
   handlePhoneLogin(): void {
-
+    this.error.set(null);
     this.loading.set(true);
-    console.log('Phone login attempt:', this.formData.telephone);
-
-    // Simuler l'envoi de code
-    setTimeout(() => {
-      this.loading.set(false);
-      // Ici, vous ajouteriez la logique d'envoi de code par SMS
-    }, 1500);
+    this.authService.login({
+      telephone: this.formData.telephone,
+      password: this.formData.password
+    }).subscribe({
+      next: (res) => {
+        this.loading.set(false);
+        switch (res.utilisateur.role) {
+          case RoleEnum.ADMIN:
+            this.router.navigate(['/admin/dashboard']);
+            break;
+          case RoleEnum.PRESTATAIRE:
+            this.router.navigate(['/prestataire/dashboard']);
+            break;
+          case RoleEnum.CLIENT:
+            this.router.navigate(['/client/dashboard']);
+            break;
+          default:
+            this.router.navigate(['/login']);
+        }
+      }, error: (err) => {
+        this.loading.set(false);
+        this.error.set(err.error?.message || "Identification incorrecte")
+      }
+    });
   }
 
   loginWithFacebook(): void {
