@@ -31,19 +31,25 @@ export class TokenService {
   
 
   getToken(): string | null {
-    return localStorage.getItem(this.TOKEN_KEY);
+    return this._token();
   }
+
   getRefreshToken(): string | null {
-    return localStorage.getItem(this.REFRESH_TOKEN_KEY);
+    return this._refreshToken();
   }
   getUser(): UtilisateurDto | null {
     const u = localStorage.getItem(this.USER_KEY);
     return u ? JSON.parse(u) : null;
   }
   setAuth(res: AuthResponse) {
+    console.log('Storing auth data:', res);
+    this._token.set(res.token);
+    this._refreshToken.set(res.refreshToken);
     localStorage.setItem(this.TOKEN_KEY, res.token);
     localStorage.setItem(this.REFRESH_TOKEN_KEY, res.refreshToken);
     localStorage.setItem(this.USER_KEY, JSON.stringify(res.utilisateur));
+    console.log('Token stored:', localStorage.getItem(this.TOKEN_KEY)?.substring(0, 20) + '...');
+    console.log('User stored:', localStorage.getItem(this.USER_KEY));
   }
 
   setToken(token: string, refresh: string) {

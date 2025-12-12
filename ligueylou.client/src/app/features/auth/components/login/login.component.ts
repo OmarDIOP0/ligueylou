@@ -57,17 +57,19 @@ export class LoginComponent {
         this.loading.set(false);
         this.authService.handleAuthSuccess(res);
 
-        if (res.utilisateur.role === RoleEnum.ADMIN) {
-          this.router.navigate(['/dashboard/admin']);
-          console.log("Connexion de l'admin");
-        } else if (res.utilisateur.role === RoleEnum.PRESTATAIRE) {
-          this.router.navigate(['/dashboard/prestataire']);
-          console.log("Connexion de l'admin");
-        }
-
-        else {
-          this.router.navigate(['/dashboard/client']);
-
+        // Navigation selon le rôle
+        switch (res.utilisateur.role) {
+          case RoleEnum.ADMIN:
+            this.router.navigate(['/admin']); // parent admin
+            break;
+          case RoleEnum.PRESTATAIRE:
+            this.router.navigate(['/prestataire']); // parent prestataire
+            break;
+          case RoleEnum.CLIENT:
+            this.router.navigate(['/client']); // parent client
+            break;
+          default:
+            this.router.navigate(['/login']); // fallback
         }
       },
       error: (err) => {
@@ -76,6 +78,7 @@ export class LoginComponent {
       }
     });
   }
+
 
 
   handlePhoneLogin(): void {
