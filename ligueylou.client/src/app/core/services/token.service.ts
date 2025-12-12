@@ -1,4 +1,10 @@
 import { Injectable, signal } from '@angular/core';
+import { jwtDecode } from 'jwt-decode';
+
+interface JwtPayload {
+  role: number;
+  exp: number;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -22,24 +28,37 @@ export class TokenService {
   
 
   getToken(): string | null {
-    return localStorage.getItem(this.TOKEN_KEY);
+    return this._token();
   }
 
-  setToken(token: string, refresh: string, expired?:number | null) {
+  setToken(token: string, refresh: string) {
     this._token.set(token);
-    this._refreshToken.set(refresh);
-    //this._expiredToken.set(expired);
 
     localStorage.setItem(this.TOKEN_KEY, token);
     localStorage.setItem(this.REFRESH_TOKEN_KEY, refresh);
-    //if (expired) sessionStorage.setItem('access_exp', expired.toString());
   }
 
   clearToken() {
     this._token.set(null);
-    this._refreshToken.set(null);
 
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem(this.REFRESH_TOKEN_KEY);
+  }
+  getPayload(): JwtPayload | null {
+    const token = this.getToken();
+    if (!token) return null;
+    try {
+      return jwtDecode<JwtPayload>(token);
+    } catch {
+      return null;
+    }
+  }
+  isExpired(): boolean {
+    const payload = this.getPayload();
+    if (!payload) return true;
+    return Date.now() > payload.exp * 1000;
+  }
+  getRole(): number | null {
+    return this.getPayload()?.role ?? null;
   }
 }
