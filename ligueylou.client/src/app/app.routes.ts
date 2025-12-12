@@ -7,6 +7,8 @@ import { AdminDashboardComponent } from './features/admin/components/admin-dashb
 import { AdminComponent } from './features/admin/components/admin/admin.component';
 import { PrestataireComponent } from './features/prestataire/components/prestataire/prestataire.component';
 import { PrestataireDashboardComponent } from './features/prestataire/components/prestataire-dashboard/prestataire-dashboard.component';
+import { ClientComponent } from './features/client/components/client/client.component';
+import { ClientDashboardComponent } from './features/client/components/client-dashboard/client-dashboard.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -27,6 +29,15 @@ export const routes: Routes = [
     component: PrestataireComponent,
     children: [
       { path: 'dashboard', component: PrestataireDashboardComponent },
+    ]
+  },
+  {
+    path: 'client',
+    canActivate: [authGuard],
+    data: { roles: [RoleEnum.CLIENT] },
+    component: ClientComponent,
+    children: [
+      { path: 'dashboard', component: ClientDashboardComponent },
     ]
   },
 
