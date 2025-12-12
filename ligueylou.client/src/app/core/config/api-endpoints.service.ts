@@ -9,7 +9,7 @@ export class ApiEndpointsService {
   auth = {
     register: `${this.base}/Utilisateurs/register`,
     login: `${this.base}/Utilisateurs/login`,
-    //refresh: `${this.base}/Utilisateurs/refresh-token`,
+    refresh: `${this.base}/Utilisateurs/refresh-token`,
     //profile: `${this.base}/Utilisateurs/profile`,
     logout: `${this.base}/Utilisateurs/logout`,
   };
