@@ -125,7 +125,25 @@ namespace Ligueylou.Server.Repository
             }
         }
 
+        public async Task<Utilisateur?> GetUtilisateurByUserName(string userName)
+        {
+            return await _context.Utilisateurs
+                .FirstOrDefaultAsync(u => (u.Id + u.Nom + u.Prenom) == userName);
+        }
+        // -----------------------------
+        // REFRESH TOKEN
+        // -----------------------------
+        public async Task<RefreshToken?> GetRefreshToken(string refreshToken)
+        {
+            return await _context.RefreshTokens
+                .FirstOrDefaultAsync(rt => rt.Refresh_Token == refreshToken);
+        }
 
+        public async Task UpdateRefreshToken(RefreshToken refreshToken)
+        {
+            _context.RefreshTokens.Update(refreshToken);
+            await _context.SaveChangesAsync();
+        }
         public async Task AddRefreshToken(RefreshToken refreshToken)
         {
             try

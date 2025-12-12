@@ -152,6 +152,44 @@ namespace Ligueylou.Server.Services.Utilisateurs
                 Utilisateur = userDto
             };
         }
+        public async Task<UserLoginResponse> RefreshToken(string refreshToken)
+        {
+            var storedToken = await _utilisateurRepo.GetRefreshToken(refreshToken);
+
+            if (storedToken == null || storedToken.Expires < DateTime.UtcNow)
+                throw new UnauthorizedAccessException("Refresh token invalide");
+
+            var user = await _utilisateurRepo.GetUtilisateurByUserName(storedToken.UserName);
+            if (user == null)
+                throw new UnauthorizedAccessException();
+
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Role, user.Role.ToString()),
+            };
+
+            var (newAccessToken, expire) = _tokenService.GenerateAccessToken(claims);
+            var newRefreshToken = _tokenService.GenerateRefreshToken();
+
+            // 🔁 ROTATION
+            storedToken.Refresh_Token = newRefreshToken;
+            storedToken.Created = DateTime.UtcNow;
+            storedToken.Expires = DateTime.UtcNow.AddDays(
+                int.Parse(_config["Jwt:RefreshTokenValidityInDays"])
+            );
+
+            await _utilisateurRepo.UpdateRefreshToken(storedToken);
+
+            return new UserLoginResponse
+            {
+                Token = newAccessToken,
+                RefreshToken = newRefreshToken,
+                TokenExpireAt = expire,
+                Utilisateur = MapToDto(user)
+            };
+        }
+
         public async Task<UtilisateurDto> UpdateUtilisateur(Guid id, CreateUtilisateurDto dto)
         {
             var user = await _utilisateurRepo.GetUtilisateurById(id);

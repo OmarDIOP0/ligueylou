@@ -1,4 +1,5 @@
-﻿using Ligueylou.Server.Identity;
+﻿using Ligueylou.Server.Dtos;
+using Ligueylou.Server.Identity;
 using Ligueylou.Server.Request;
 using Ligueylou.Server.Services.Utilisateurs;
 using Microsoft.AspNetCore.Authorization;
@@ -49,6 +50,16 @@ namespace Ligueylou.Server.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+        [HttpPost("refresh-token")]
+        public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequestDto request)
+        {
+            if (string.IsNullOrEmpty(request.RefreshToken))
+                return Unauthorized();
+
+            var response = await _service.RefreshToken(request.RefreshToken);
+            return Ok(response);
+        }
+
         [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUtilisateur(Guid id, [FromBody] CreateUtilisateurDto dto)

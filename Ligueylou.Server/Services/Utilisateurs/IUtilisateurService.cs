@@ -10,6 +10,7 @@ namespace Ligueylou.Server.Services.Utilisateurs
     {
         Task<UserRegisterResponse> Register(CreateUtilisateurDto createUtilisateurDto);
         Task<UserLoginResponse> Login(LoginRequestDto loginRequest);
+        Task<UserLoginResponse> RefreshToken(string refreshToken);
         Task<UtilisateurDto> UpdateUtilisateur(Guid id, CreateUtilisateurDto dto);
         Task DeleteUtilisateur(Guid id);
         Task Logout(Guid id);
