@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule } from '@angular/forms';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,6 @@ import { FormsModule } from '@angular/forms';
 export class LoginComponent {
   activeTab: 'email' | 'phone' = 'email';
   showPassword = false;
-  loading = false;
   currentYear: number;
 
   formData = {
@@ -22,7 +22,10 @@ export class LoginComponent {
     phone: '',
     remember: false
   };
-
+  private fb = inject(FormBuilder);
+  private authService = inject(AuthService);
+  loading = signal(false);
+  error = signal<string | null>(null);
   constructor() {
     this.currentYear = new Date().getFullYear();
   }
@@ -40,48 +43,45 @@ export class LoginComponent {
   }
 
   handleEmailLogin(): void {
-    if (this.loading) return;
-
-    this.loading = true;
+    this.loading.set(true);
     console.log('Email login attempt:', this.formData.email);
 
     // Simuler une requête API
     setTimeout(() => {
-      this.loading = false;
+      this.loading.set(false);
       // Ici, vous ajouteriez la logique de connexion réelle
       // this.authService.login(this.formData.email, this.formData.password);
     }, 1500);
   }
 
   handlePhoneLogin(): void {
-    if (this.loading) return;
 
-    this.loading = true;
+    this.loading.set(true);
     console.log('Phone login attempt:', this.formData.phone);
 
     // Simuler l'envoi de code
     setTimeout(() => {
-      this.loading = false;
+      this.loading.set(false);
       // Ici, vous ajouteriez la logique d'envoi de code par SMS
     }, 1500);
   }
 
   loginWithFacebook(): void {
-    this.loading = true;
+    this.loading.set(true);
     console.log('Facebook login attempt');
 
     setTimeout(() => {
-      this.loading = false;
+      this.loading.set(false);
       // Intégration Facebook OAuth
     }, 1500);
   }
 
   loginWithTwitter(): void {
-    this.loading = true;
+    this.loading.set(true);
     console.log('Twitter login attempt');
 
     setTimeout(() => {
-      this.loading = false;
+      this.loading.set(false);
       // Intégration Twitter OAuth
     }, 1500);
   }
