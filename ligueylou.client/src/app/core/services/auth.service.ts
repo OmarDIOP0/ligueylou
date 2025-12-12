@@ -5,6 +5,7 @@ import { ApiEndpointsService } from '../config/api-endpoints.service';
 import { catchError, throwError } from 'rxjs';
 import { RegisterRequestDto } from '../models/RegisterRequestDto';
 import { LoginRequestDto } from '../models/LoginRequestDto';
+import { AuthResponse } from '../models/AuthResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,12 @@ export class AuthService {
         }
         ));
   }
+  handleAuthSuccess(res: AuthResponse) {
+    this.tokenService.setToken(res.token, res.refreshToken);
+  }
 
+  logout() {
+    this.tokenService.clearToken();
+  }
 
 }
