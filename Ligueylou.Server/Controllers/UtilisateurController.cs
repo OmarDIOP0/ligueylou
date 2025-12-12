@@ -4,6 +4,7 @@ using Ligueylou.Server.Request;
 using Ligueylou.Server.Services.Utilisateurs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 
 namespace Ligueylou.Server.Controllers
@@ -113,7 +114,20 @@ namespace Ligueylou.Server.Controllers
             var user = await _service.GetUtilisateurById(id);
             return user == null ? NotFound() : Ok(user);
         }
+        [Authorize]
+        [HttpGet("profile")]
+        public async Task<IActionResult> Profile()
+        {
+            var connectedUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(connectedUserId))
+                return Unauthorized();
 
+            var userId = Guid.Parse(connectedUserId);
+            var user = await _service.GetUtilisateurById(userId);
+            if(user == null) return NotFound();
+
+            return Ok(user);
+        }
         [Authorize]
         [HttpGet("email/{email}")]
         public async Task<IActionResult> GetByEmail(string email)
