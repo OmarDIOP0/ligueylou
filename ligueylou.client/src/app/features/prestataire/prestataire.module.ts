@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PrestataireComponent } from './components/prestataire/prestataire.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    PrestataireComponent
+  ],
   imports: [
     CommonModule
   ]
