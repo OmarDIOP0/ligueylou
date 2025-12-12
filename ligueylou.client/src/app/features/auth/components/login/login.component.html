@@ -60,7 +60,7 @@
                          [(ngModel)]="formData.email"
                          name="email"
                          required
-                         [disabled]="loading" />
+                         [disabled]="loading()" />
                 </div>
 
                 <div>
@@ -76,7 +76,7 @@
                            [(ngModel)]="formData.password"
                            name="password"
                            required
-                           [disabled]="loading" />
+                           [disabled]="loading()" />
                     <button type="button"
                             class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
                             (click)="togglePasswordVisibility()">
@@ -101,16 +101,18 @@
 
                 <button type="submit"
                         class="w-full py-3 bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg transition duration-200"
-                        [disabled]="loading || emailForm.invalid">
-                  @if (loading) {
-                  <div class="flex items-center justify-center">
-                    <div class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                    Connexion...
-                  </div>
-                  } @else {
-                  Se connecter
-                  }
+                        [disabled]="loading() || emailForm.invalid">
+                  <ng-container *ngIf="loading(); else normal">
+                    <div class="flex items-center justify-center">
+                      <div class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                      Connexion...
+                    </div>
+                  </ng-container>
+                  <ng-template #normal>
+                    Se connecter
+                  </ng-template>
                 </button>
+
               </div>
             </form>
           </div>
@@ -129,20 +131,20 @@
                          [(ngModel)]="formData.telephone"
                          name="telephone"
                          required
-                         [disabled]="loading" />
+                         [disabled]="loading()" />
                 </div>
-
                 <button type="submit"
                         class="w-full py-3 bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg transition duration-200"
-                        [disabled]="loading || phoneForm.invalid">
-                  @if (loading) {
-                  <div class="flex items-center justify-center">
-                    <div class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                    Envoi...
-                  </div>
-                  } @else {
-                  Recevoir un code
-                  }
+                        [disabled]="loading() || phoneForm.invalid">
+                  <ng-container *ngIf="loading(); else normal">
+                    <div class="flex items-center justify-center">
+                      <div class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                     Envoi...
+                    </div>
+                  </ng-container>
+                  <ng-template #normal>
+                    Recevoir un code
+                  </ng-template>
                 </button>
               </div>
             </form>
