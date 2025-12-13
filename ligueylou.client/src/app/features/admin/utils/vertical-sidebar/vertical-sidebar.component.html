@@ -1,0 +1,82 @@
+<aside class="sidebar bg-base-200 text-base-content flex flex-col h-full transition-all duration-300 ease-in-out"
+       [class.w-64]="!customizer.miniSidebar()"
+       [class.w-20]="customizer.miniSidebar()"
+       [class.-translate-x-full]="!customizer.sidebarDrawer()"
+       [class.lg:translate-x-0]="true">
+  <!-- Logo -->
+  <div class="p-5 border-b border-base-300">
+    <div class="flex items-center justify-center">
+      <div class="text-xl font-bold" [class.hidden]="customizer.miniSidebar()">
+        MyApp
+      </div>
+      <div class="text-xl font-bold" [class.hidden]="!customizer.miniSidebar()">
+        M
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="flex-1 overflow-y-auto scrollnavbar">
+    <ul class="menu p-4 space-y-1">
+      @for (item of sidebarItems; track item.title) {
+      @if (item.divider) {
+      <div class="divider my-3"></div>
+      } @else if (item.header) {
+      <li class="menu-title" [class.hidden]="customizer.miniSidebar()">
+        <span>{{ item.title }}</span>
+      </li>
+      } @else if (item.children) {
+      <li>
+        <details [open]="isActiveRoute(item.route || '')">
+          <summary class="gap-2">
+            <span class="material-icons">{{ item.icon }}</span>
+            @if (!customizer.miniSidebar()) {
+            <span>{{ item.title }}</span>
+            }
+          </summary>
+          <ul>
+            @for (child of item.children; track child.title) {
+            <li>
+              <a [routerLink]="child.route"
+                 routerLinkActive="active"
+                 [class.justify-center]="customizer.miniSidebar()">
+                @if (customizer.miniSidebar()) {
+                <span class="material-icons text-xs">circle</span>
+                } @else {
+                <span>{{ child.title }}</span>
+                }
+              </a>
+            </li>
+            }
+          </ul>
+        </details>
+      </li>
+      } @else {
+      <li>
+        <a [routerLink]="item.route"
+           routerLinkActive="active"
+           class="gap-2"
+           [class.justify-center]="customizer.miniSidebar()">
+          <span class="material-icons">{{ item.icon }}</span>
+          @if (!customizer.miniSidebar()) {
+          <span>{{ item.title }}</span>
+          }
+        </a>
+      </li>
+      }
+      }
+    </ul>
+
+    <!-- Extra Box -->
+    <div class="p-4">
+      <div class="alert alert-info" [class.hidden]="customizer.miniSidebar()">
+        <span>Upgrade to Pro</span>
+      </div>
+    </div>
+
+    <!-- Version -->
+    <div class="p-4 text-center">
+      <span class="badge badge-neutral" [class.hidden]="customizer.miniSidebar()">v1.3.0</span>
+    </div>
+  </div>
+</aside>

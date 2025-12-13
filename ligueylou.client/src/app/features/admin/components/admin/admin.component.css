@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.mini-sidebar {
+  --sidebar-width: 5rem;
+}
+
+.input-with-bg input,
+.input-with-bg textarea,
+.input-with-bg select {
+  @apply bg-base-200;
+}
+
+/* Scrollbar styling */
+.scrollnavbar {
+  scrollbar-width: thin;
+  scrollbar-color: theme('colors.base-300') transparent;
+}
+
+  .scrollnavbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollnavbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollnavbar::-webkit-scrollbar-thumb {
+    background-color: theme('colors.base-300');
+    border-radius: 3px;
+  }
