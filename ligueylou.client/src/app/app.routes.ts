@@ -2,13 +2,13 @@ import { Routes } from '@angular/router';
 import { RegisterComponent } from './features/auth/components/register/register.component';
 import { authGuard } from './core/guards/auth.guard';
 import { RoleEnum } from './core/models/user.enums';
-import { AdminDashboardComponent } from './features/admin/components/admin-dashboard/admin-dashboard.component';
 import { AdminComponent } from './features/admin/components/admin/admin.component';
 import { PrestataireComponent } from './features/prestataire/components/prestataire/prestataire.component';
 import { PrestataireDashboardComponent } from './features/prestataire/components/prestataire-dashboard/prestataire-dashboard.component';
 import { ClientComponent } from './features/client/components/client/client.component';
 import { ClientDashboardComponent } from './features/client/components/client-dashboard/client-dashboard.component';
 import { LoginComponent } from './features/admin/components/auth/login/login.component';
+import { AdminDashboardComponent } from './features/admin/components/admin-dashboard/admin-dashboard.component';
 
 export const routes: Routes = [
   { path: 'admin/login', component: LoginComponent },

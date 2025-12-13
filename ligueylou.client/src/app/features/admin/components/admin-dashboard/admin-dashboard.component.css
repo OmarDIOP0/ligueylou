@@ -1,0 +1,28 @@
+/* Animation douce pour les cartes */
+/*.card {
+  transition: all 0.3s ease;
+}*/
+
+/* Animation pour le sidebar */
+/*.sidebar-transition {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}*/
+
+/* Animation pour les barres de progression */
+/*.progress-bar {
+  transition: width 1s ease-in-out;
+}*/
+
+/* Style pour les tables */
+/*.table tbody tr {
+  transition: background-color 0.2s ease;
+}*/
+
+/* Style pour les boutons */
+/*.btn {
+  transition: all 0.2s ease;
+}
+
+  .btn:hover {
+    transform: translateY(-1px);
+  }*/

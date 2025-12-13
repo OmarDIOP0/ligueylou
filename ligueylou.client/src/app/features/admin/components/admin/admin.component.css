@@ -3,31 +3,104 @@
   height: 100vh;
 }
 
-.mini-sidebar {
-  --sidebar-width: 5rem;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
 
-.input-with-bg input,
-.input-with-bg textarea,
-.input-with-bg select {
-  @apply bg-base-200;
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-/* Scrollbar styling */
-.scrollnavbar {
-  scrollbar-width: thin;
-  scrollbar-color: theme('colors.base-300') transparent;
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--bc) / 0.2);
+  border-radius: 3px;
 }
 
-  .scrollnavbar::-webkit-scrollbar {
-    width: 6px;
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--bc) / 0.3);
   }
 
-  .scrollnavbar::-webkit-scrollbar-track {
-    background: transparent;
+/* Animation for active menu item */
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
   }
 
-  .scrollnavbar::-webkit-scrollbar-thumb {
-    background-color: theme('colors.base-300');
-    border-radius: 3px;
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
   }
+}
+
+.animate-pulse {
+  animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Smooth transitions */
+.sidebar-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Rotation pour les flèches des sous-menus */
+.rotate-90 {
+  transform: rotate(90deg);
+}
+
+/* Ajustements pour le sidebar horizontal */
+.horizontal-sidebar {
+  margin-top: -1px;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+  border-left: 1px solid hsl(var(--bc) / 0.1);
+}
+
+/* Ajustement pour l'overlay mobile */
+.fixed.inset-0.bg-black.bg-opacity-50 {
+  z-index: 40;
+}
+
+/* Correction pour éviter que le menu burger soit trop noir */
+.btn.btn-ghost.btn-sm.lg\:hidden {
+  background-color: transparent !important;
+}
+
+  .btn.btn-ghost.btn-sm.lg\:hidden:hover {
+    background-color: hsl(var(--bc) / 0.1) !important;
+  }
+
+/* Style pour le menu burger du sidebar horizontal */
+.burger-menu-button {
+  background-color: transparent !important;
+}
+
+  .burger-menu-button:hover {
+    background-color: hsl(var(--bc) / 0.1) !important;
+  }
+
+  /* Cacher le burger menu horizontal quand le sidebar vertical est fermé */
+  .burger-menu-button.hidden {
+    display: none !important;
+  }
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .horizontal-sidebar {
+    left: 0;
+    top: 0;
+    z-index: 45;
+  }
+
+  /* Ajustement pour mobile */
+  .burger-menu-button {
+    display: block !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .horizontal-sidebar {
+    width: 100%;
+    max-width: 280px;
+  }
+}
