@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
-import { FormBuilder, FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../../../core/services/auth.service';
 import { RoleEnum } from '../../../../../core/models/user.enums';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule],
   standalone: true,
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -17,12 +17,6 @@ export class LoginComponent {
   showPassword = false;
   currentYear: number;
   private router = inject(Router);
-  formData = {
-    email: '',
-    password: '',
-    telephone: '',
-    remember: false
-  };
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   loading = signal(false);
@@ -30,93 +24,75 @@ export class LoginComponent {
   constructor() {
     this.currentYear = new Date().getFullYear();
   }
+  emailForm = this.fb.nonNullable.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    remember: [false]
+  })
+
+  phoneForm = this.fb.nonNullable.group({
+    telephone: ['', [
+      Validators.required,
+      Validators.pattern(/^(\+221)?7[05678][0-9]{7}$/) // Sénégal
+    ]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+  });
+
+  formData = {
+    email: '',
+    password: '',
+    telephone: '',
+    remember: false
+  };
   ngOnInit(): void {
     // Initialisation si nécessaire
   }
   setActiveTab(tab: 'email' | 'phone'): void {
+    this.error.set(null);
     this.activeTab = tab;
   }
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
+  submitEmail() {
+    if (this.emailForm.invalid) {
+      this.emailForm.markAllAsTouched();
+      return;
+    }
+    this.authenticate(this.emailForm.getRawValue());
+  }
+  submitPhone() {
+    if (this.phoneForm.invalid) {
+      this.phoneForm.markAllAsTouched();
+      return;
+    }
 
-  handleEmailLogin(): void {
-    this.error.set(null);
+    this.authenticate(this.phoneForm.getRawValue());
+  }
+  private authenticate(payload: any) {
     this.loading.set(true);
+    this.error.set(null);
 
-    this.authService.login({
-      email: this.formData.email,
-      password: this.formData.password
-    }).subscribe({
+    this.authService.login(payload).subscribe({
       next: (res) => {
         this.loading.set(false);
-        switch (res.utilisateur.role) {
-          case RoleEnum.ADMIN:
-            this.router.navigate(['/admin/dashboard']);
-            break;
-          case RoleEnum.PRESTATAIRE:
-            this.router.navigate(['/prestataire/dashboard']);
-            break;
-          case RoleEnum.CLIENT:
-            this.router.navigate(['/client/dashboard']);
-            break;
-          default:
-            this.router.navigate(['/login']);
-        }
+        //this.redirectByRole(res.utilisateur.role);
+        this.router.navigate(['/admin/dashboard']);
       },
       error: (err) => {
         this.loading.set(false);
-        this.error.set(err.error?.message || "Identifiants incorrects.");
-      }
-    });
-
-  }
-  handlePhoneLogin(): void {
-    this.error.set(null);
-    this.loading.set(true);
-    this.authService.login({
-      telephone: this.formData.telephone,
-      password: this.formData.password
-    }).subscribe({
-      next: (res) => {
-        this.loading.set(false);
-        switch (res.utilisateur.role) {
-          case RoleEnum.ADMIN:
-            this.router.navigate(['/admin/dashboard']);
-            break;
-          case RoleEnum.PRESTATAIRE:
-            this.router.navigate(['/prestataire/dashboard']);
-            break;
-          case RoleEnum.CLIENT:
-            this.router.navigate(['/client/dashboard']);
-            break;
-          default:
-            this.router.navigate(['/login']);
-        }
-      }, error: (err) => {
-        this.loading.set(false);
-        this.error.set(err.error?.message || "Identification incorrecte")
+        this.error.set(err.error?.message || 'Identifiants incorrects');
       }
     });
   }
+  private redirectByRole(role: RoleEnum) {
+    const routes = {
+      [RoleEnum.ADMIN]: '/admin/dashboard',
+      [RoleEnum.PRESTATAIRE]: '/prestataire/dashboard',
+      [RoleEnum.CLIENT]: '/client/dashboard',
+    };
 
-  loginWithFacebook(): void {
-    this.loading.set(true);
-    console.log('Facebook login attempt');
-
-    setTimeout(() => {
-      this.loading.set(false);
-      // Intégration Facebook OAuth
-    }, 1500);
+    this.router.navigate([routes[role] ?? '/login']);
   }
 
-  loginWithTwitter(): void {
-    this.loading.set(true);
-    console.log('Twitter login attempt');
-
-    setTimeout(() => {
-      this.loading.set(false);
-      // Intégration Twitter OAuth
-    }, 1500);
-  }
 }
