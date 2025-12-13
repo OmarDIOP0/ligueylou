@@ -4,6 +4,8 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { AdminComponent } from './components/admin/admin.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
+import { CustomizerPanelComponent } from './utils/customizer-panel/customizer-panel.component';
+import { VerticalHeaderComponent } from './utils/vertical-header/vertical-header.component';
 
 
 
@@ -12,7 +14,9 @@ import { RegisterComponent } from './components/auth/register/register.component
     AdminDashboardComponent,
     AdminComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CustomizerPanelComponent,
+    VerticalHeaderComponent
   ],
   imports: [
     CommonModule
