@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './features/auth/components/login/login.component';
 import { RegisterComponent } from './features/auth/components/register/register.component';
 import { authGuard } from './core/guards/auth.guard';
 import { RoleEnum } from './core/models/user.enums';
@@ -9,10 +8,11 @@ import { PrestataireComponent } from './features/prestataire/components/prestata
 import { PrestataireDashboardComponent } from './features/prestataire/components/prestataire-dashboard/prestataire-dashboard.component';
 import { ClientComponent } from './features/client/components/client/client.component';
 import { ClientDashboardComponent } from './features/client/components/client-dashboard/client-dashboard.component';
+import { LoginComponent } from './features/admin/components/auth/login/login.component';
 
 export const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'admin/login', component: LoginComponent },
+  //{ path: 'register', component: RegisterComponent },
   {
     path: 'admin',
     canActivate: [authGuard],
@@ -41,5 +41,5 @@ export const routes: Routes = [
     ]
   },
 
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+  { path: '', redirectTo: 'admin/login', pathMatch: 'full' }
 ];

@@ -11,11 +11,11 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   const token = tokenService.getToken();
   if (!token) {
-    return router.createUrlTree(['/login']);
+    return router.createUrlTree(['/admin/login']);
   }
   if (jwtHelper.isTokenExpired(token)) {
     tokenService.clearToken();
-    return router.createUrlTree(['/login']);
+    return router.createUrlTree(['/admin/login']);
   }
   const allowedRoles = route.data?.['roles'] as RoleEnum[] | undefined;
 

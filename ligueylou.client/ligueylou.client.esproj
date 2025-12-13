@@ -12,7 +12,7 @@
     <Folder Include="src\app\core\guards\" />
     <Folder Include="src\app\core\interceptors\" />
     <Folder Include="src\app\core\services\" />
-    <Folder Include="src\app\features\admin\components\" />
+    <Folder Include="src\app\features\admin\components\auth\" />
     <Folder Include="src\app\features\admin\pages\" />
     <Folder Include="src\app\features\admin\services\" />
     <Folder Include="src\app\features\auth\services\" />
