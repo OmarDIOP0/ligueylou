@@ -12,7 +12,7 @@ import { RoleEnum } from '../../../../core/models/user.enums';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-
+//je dois tester avec 
 export class LoginComponent {
   activeTab: 'email' | 'phone' = 'email';
   showPassword = false;
