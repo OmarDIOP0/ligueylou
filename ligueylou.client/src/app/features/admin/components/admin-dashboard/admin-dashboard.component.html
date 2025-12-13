@@ -1,79 +1,14 @@
-<!--<div class="lg:ml-64 transition-all duration-300">-->
-  <!-- Header -->
-  <!--<header class="sticky top-0 z-40 bg-base-100 border-b shadow-sm">
-    <div class="flex items-center justify-between px-6 py-4">-->
-      <!-- Menu Toggle -->
-      <!--<button class="lg:hidden" (click)="toggleSidebar()">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>-->
-
-      <!-- Search -->
-      <!--<div class="flex-1 max-w-xl mx-4">
-        <div class="relative">
-          <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-          <input type="text" placeholder="Rechercher..."
-                 class="input input-bordered w-full pl-10" />
-        </div>
-      </div>-->
-
-      <!-- Right Side -->
-      <!--<div class="flex items-center space-x-4">-->
-        <!-- Notifications -->
-        <!--<div class="dropdown dropdown-end">
-          <label tabindex="0" class="btn btn-ghost btn-circle">
-            <div class="indicator">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-              </svg>
-              <span class="badge badge-xs badge-primary indicator-item"></span>
-            </div>
-          </label>
-          <div tabindex="0" class="dropdown-content card card-compact w-80 bg-base-100 shadow-lg mt-3">
-            <div class="card-body">
-              <h3 class="card-title">Notifications</h3>
-              <div class="space-y-2">
-                <div class="alert">
-                  <span>Nouveau rendez-vous confirmé</span>
-                </div>
-                <div class="alert alert-info">
-                  <span>2 nouveaux clients aujourd'hui</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>-->
-
-        <!-- Profile -->
-        <!--<div class="dropdown dropdown-end">
-          <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-            <div class="w-10 rounded-full">
-              <img src="https://i.pravatar.cc/150?img=32" alt="Admin" />
-            </div>
-          </label>
-          <ul tabindex="0" class="dropdown-content menu menu-sm bg-base-100 rounded-box shadow-lg w-52 mt-3">
-            <li><a>Mon Profil</a></li>
-            <li><a>Paramètres</a></li>
-            <li><a class="text-error">Déconnexion</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </header>-->
-
-  <!-- Main Content -->
-  <!--<main class="p-6">-->
+<div class="space-y-6">
+  <div class=" transition-all duration-300">
+    <!-- Main Content -->
+    <main class="p-6">
     <!-- Welcome -->
-    <!--<div class="mb-8">
+    <div class="mb-8">
       <h1 class="text-3xl font-bold mb-2">Bonjour, Admin 👋</h1>
       <p class="text-gray-600">Voici un aperçu de votre activité aujourd'hui</p>
-    </div>-->
-
+    </div>
     <!-- Stats Cards -->
-    <!--<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
       @for (stat of stats; track stat.title) {
       <div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow duration-300">
         <div class="card-body">
@@ -93,59 +28,57 @@
         </div>
       </div>
       }
-    </div>-->
-
+    </div>
     <!-- Charts & Tables -->
-    <!--<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">-->
-      <!-- Rendez-vous récents -->
-      <!--<div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow duration-300">
-        <div class="card-body">
-          <h2 class="card-title">Rendez-vous récents</h2>
-          <div class="overflow-x-auto">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Client</th>
-                  <th>Service</th>
-                  <th>Date</th>
-                  <th>Statut</th>
-                </tr>
-              </thead>
-              <tbody>
-                @for (appointment of recentAppointments; track appointment.client) {
-                <tr class="hover:bg-base-200 transition-colors">
-                  <td>
-                    <div class="flex items-center space-x-3">
-                      <div class="avatar">
-                        <div class="mask mask-squircle w-8 h-8">
-                          <img src="https://i.pravatar.cc/150?u={{ appointment.client }}" alt="Avatar" />
-                        </div>
-                      </div>
-                      <div>
-                        <div class="font-bold">{{ appointment.client }}</div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Rendez-vous récents -->
+    <div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow duration-300">
+      <div class="card-body">
+        <h2 class="card-title">Rendez-vous récents</h2>
+        <div class="overflow-x-auto">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Client</th>
+                <th>Service</th>
+                <th>Date</th>
+                <th>Statut</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (appointment of recentAppointments; track appointment.client) {
+              <tr class="hover:bg-base-200 transition-colors">
+                <td>
+                  <div class="flex items-center space-x-3">
+                    <div class="avatar">
+                      <div class="mask mask-squircle w-8 h-8">
+                        <img src="https://i.pravatar.cc/150?u={{ appointment.client }}" alt="Avatar" />
                       </div>
                     </div>
-                  </td>
-                  <td>{{ appointment.service }}</td>
-                  <td>{{ appointment.date }}</td>
-                  <td>
-                    <span [class]="getStatusClass(appointment.status)">
-                      {{ appointment.status }}
-                    </span>
-                  </td>
-                </tr>
-                }
-              </tbody>
-            </table>
-          </div>
-          <div class="card-actions justify-end mt-4">
-            <button class="btn btn-primary btn-sm">Voir tous</button>
-          </div>
+                    <div>
+                      <div class="font-bold">{{ appointment.client }}</div>
+                    </div>
+                  </div>
+                </td>
+                <td>{{ appointment.service }}</td>
+                <td>{{ appointment.date }}</td>
+                <td>
+                  <span [class]="getStatusClass(appointment.status)">
+                    {{ appointment.status }}
+                  </span>
+                </td>
+              </tr>
+              }
+            </tbody>
+          </table>
         </div>
-      </div>-->
-
-      <!-- Clients récents -->
-      <!--<div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <div class="card-actions justify-end mt-4">
+          <button class="btn btn-primary btn-sm">Voir tous</button>
+        </div>
+      </div>
+    </div>
+    <!-- Clients récents -->
+    <div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow duration-300">
         <div class="card-body">
           <h2 class="card-title">Clients récents</h2>
           <div class="space-y-4">
@@ -176,10 +109,9 @@
           </div>
         </div>
       </div>
-    </div>-->
-
+    </div>
     <!-- Services populaires -->
-    <!--<div class="mt-6">
+    <div class="mt-6">
       <div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow duration-300">
         <div class="card-body">
           <h2 class="card-title">Services les plus populaires</h2>
@@ -207,10 +139,9 @@
           </div>
         </div>
       </div>
-    </div>-->
-
+    </div>
     <!-- Calendrier rapide -->
-    <!--<div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
       <div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow duration-300 lg:col-span-2">
         <div class="card-body">
           <h2 class="card-title">Activité récente</h2>
@@ -238,161 +169,160 @@
             }
           </div>
         </div>
-      </div>-->
-
-      <!-- Actions rapides -->
-      <!--<div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow duration-300">
-        <div class="card-body">
-          <h2 class="card-title">Actions rapides</h2>
-          <div class="space-y-3">
-            <button class="btn btn-primary btn-block">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-              </svg>
-              Nouveau rendez-vous
-            </button>
-            <button class="btn btn-secondary btn-block">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-              </svg>
-              Ajouter un client
-            </button>
-            <button class="btn btn-accent btn-block">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-              </svg>
-              Générer rapport
-            </button>
-          </div>
-        </div>
       </div>
-    </div>
-  </main>
-</div>-->
-<h1>Helloo</h1><div class="space-y-6">
-  <!-- Header du dashboard -->
-  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-    <div>
-      <h1 class="text-2xl font-bold text-base-content">Dashboard</h1>
-      <p class="text-base-content/60">Welcome to your admin dashboard</p>
-    </div>
-    <div class="flex items-center space-x-3">
-      <button class="btn btn-primary btn-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-        </svg>
-        Nouveau
-      </button>
-    </div>
-  </div>
-
-  <!-- Grille de cartes -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-    <!-- Carte 1 -->
-    <div class="card bg-base-100 shadow-md">
-      <div class="card-body">
-        <div class="flex items-center justify-between">
-          <div>
-            <p class="text-sm text-base-content/60">Total Earning</p>
-            <h3 class="text-2xl font-bold text-base-content">$500.00</h3>
-          </div>
-          <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Carte 2 -->
-    <div class="card bg-base-100 shadow-md">
-      <div class="card-body">
-        <div class="flex items-center justify-between">
-          <div>
-            <p class="text-sm text-base-content/60">Total Order</p>
-            <h3 class="text-2xl font-bold text-base-content">$108</h3>
-          </div>
-          <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Carte 3 -->
-    <div class="card bg-base-100 shadow-md">
-      <div class="card-body">
-        <div class="flex items-center justify-between">
-          <div>
-            <p class="text-sm text-base-content/60">Total Growth</p>
-            <h3 class="text-2xl font-bold text-base-content">$2,324.00</h3>
-            <p class="text-xs text-success mt-1">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-              </svg>
-              Today
-            </p>
-          </div>
-          <div class="w-12 h-12 rounded-full bg-success/10 flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Autres sections -->
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-    <!-- Section Pipeline -->
-    <div class="card bg-base-100 shadow-md">
-      <div class="card-body">
-        <h3 class="card-title text-base-content">Pipeline</h3>
-        <div class="tabs tabs-boxed bg-base-200 w-fit">
-          <button class="tab tab-active">Tab 1</button>
-          <button class="tab">Tab 2</button>
-        </div>
-        <div class="mt-4 space-y-4">
-          <div class="flex items-center justify-between p-3 bg-base-200 rounded-lg">
-            <div>
-              <p class="text-sm text-base-content/60">Total Income</p>
-              <h4 class="text-xl font-bold text-base-content">$203k</h4>
+    <!-- Actions rapides -->
+    <div class="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div class="card-body">
+              <h2 class="card-title">Actions rapides</h2>
+              <div class="space-y-3">
+                <button class="btn btn-primary btn-block">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                  </svg>
+                  Nouveau rendez-vous
+                </button>
+                <button class="btn btn-secondary btn-block">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                  </svg>
+                  Ajouter un client
+                </button>
+                <button class="btn btn-accent btn-block">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                  Générer rapport
+                </button>
+              </div>
             </div>
-            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          </div>
+        </div>
+      </main>
+    </div>
+
+      <!-- Header du dashboard -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <h1 class="text-2xl font-bold text-base-content">Dashboard</h1>
+        <p class="text-base-content/60">Welcome to your admin dashboard</p>
+      </div>
+      <div class="flex items-center space-x-3">
+        <button class="btn btn-primary btn-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+          Nouveau
+        </button>
+      </div>
+    </div>
+
+    <!-- Grille de cartes -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Carte 1 -->
+      <div class="card bg-base-100 shadow-md">
+        <div class="card-body">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm text-base-content/60">Total Earning</p>
+              <h3 class="text-2xl font-bold text-base-content">$500.00</h3>
+            </div>
+            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Carte 2 -->
+      <div class="card bg-base-100 shadow-md">
+        <div class="card-body">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm text-base-content/60">Total Order</p>
+              <h3 class="text-2xl font-bold text-base-content">$108</h3>
+            </div>
+            <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte 3 -->
+      <div class="card bg-base-100 shadow-md">
+        <div class="card-body">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm text-base-content/60">Total Growth</p>
+              <h3 class="text-2xl font-bold text-base-content">$2,324.00</h3>
+              <p class="text-xs text-success mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                </svg>
+                Today
+              </p>
+            </div>
+            <div class="w-12 h-12 rounded-full bg-success/10 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Section Popular Stocks -->
-    <div class="card bg-base-100 shadow-md">
-      <div class="card-body">
-        <h3 class="card-title text-base-content">Popular Stocks</h3>
-        <div class="mt-4 space-y-4">
-          <div class="flex items-center justify-between p-3 hover:bg-base-200 rounded-lg transition-colors">
-            <div class="flex items-center space-x-3">
-              <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-primary to-purple-600 flex items-center justify-center">
-                <span class="text-white font-bold">B</span>
-              </div>
+    <!-- Autres sections -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Section Pipeline -->
+      <div class="card bg-base-100 shadow-md">
+        <div class="card-body">
+          <h3 class="card-title text-base-content">Pipeline</h3>
+          <div class="tabs tabs-boxed bg-base-200 w-fit">
+            <button class="tab tab-active">Tab 1</button>
+            <button class="tab">Tab 2</button>
+          </div>
+          <div class="mt-4 space-y-4">
+            <div class="flex items-center justify-between p-3 bg-base-200 rounded-lg">
               <div>
-                <h4 class="font-semibold text-base-content">Bajaj Finery</h4>
-                <p class="text-xs text-success">10% Profit</p>
+                <p class="text-sm text-base-content/60">Total Income</p>
+                <h4 class="text-xl font-bold text-base-content">$203k</h4>
+              </div>
+              <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
               </div>
             </div>
-            <div>
-              <h4 class="font-bold text-base-content">$1839.00</h4>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section Popular Stocks -->
+      <div class="card bg-base-100 shadow-md">
+        <div class="card-body">
+          <h3 class="card-title text-base-content">Popular Stocks</h3>
+          <div class="mt-4 space-y-4">
+            <div class="flex items-center justify-between p-3 hover:bg-base-200 rounded-lg transition-colors">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-primary to-purple-600 flex items-center justify-center">
+                  <span class="text-white font-bold">B</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-base-content">Bajaj Finery</h4>
+                  <p class="text-xs text-success">10% Profit</p>
+                </div>
+              </div>
+              <div>
+                <h4 class="font-bold text-base-content">$1839.00</h4>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
