@@ -52,7 +52,7 @@
 /* Ajustements pour le sidebar horizontal */
 .horizontal-sidebar {
   margin-top: -1px;
-  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+/*  box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);*/
   border-left: 1px solid hsl(var(--bc) / 0.1);
 }
 
@@ -60,7 +60,9 @@
 .fixed.inset-0.bg-black.bg-opacity-50 {
   z-index: 40;
 }
-
+.sidebar{
+    box-shadow: 0px red;
+}
 /* Correction pour éviter que le menu burger soit trop noir */
 .btn.btn-ghost.btn-sm.lg\:hidden {
   background-color: transparent !important;
