@@ -39,17 +39,14 @@
   animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Smooth transitions */
 .sidebar-transition {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Rotation pour les flèches des sous-menus */
 .rotate-90 {
   transform: rotate(90deg);
 }
 
-/* Ajustements pour le sidebar horizontal */
 .horizontal-sidebar {
   margin-top: -1px;
 /*  box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);*/
@@ -63,7 +60,6 @@
 .sidebar{
     box-shadow: 0px red;
 }
-/* Correction pour éviter que le menu burger soit trop noir */
 .btn.btn-ghost.btn-sm.lg\:hidden {
   background-color: transparent !important;
 }
