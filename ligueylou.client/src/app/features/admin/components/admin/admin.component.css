@@ -68,7 +68,6 @@
     background-color: hsl(var(--bc) / 0.1) !important;
   }
 
-/* Style pour le menu burger du sidebar horizontal */
 .burger-menu-button {
   background-color: transparent !important;
 }
@@ -77,12 +76,11 @@
     background-color: hsl(var(--bc) / 0.1) !important;
   }
 
-  /* Cacher le burger menu horizontal quand le sidebar vertical est fermé */
+ 
   .burger-menu-button.hidden {
     display: none !important;
   }
 
-/* Responsive adjustments */
 @media (max-width: 1024px) {
   .horizontal-sidebar {
     left: 0;
