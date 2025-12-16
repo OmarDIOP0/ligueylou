@@ -51,38 +51,23 @@ export class AdminComponent implements OnInit {
         route: '/admin/ecommerce',
         children: [
           {
-            title: 'Products',
+            title: 'Tous les clients',
             icon: 'M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4',
             route: '/admin/ecommerce/products'
-          },
-          {
-            title: 'Orders',
-            icon: 'M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z',
-            route: '/admin/ecommerce/orders'
-          },
-          {
-            title: 'Customers',
-            icon: 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5 5.197a4.5 4.5 0 00-8.366-2.309M3 13.125A4.125 4.125 0 017.125 9h9.75A4.125 4.125 0 0121 13.125v1.75A4.125 4.125 0 0116.875 19h-9.75A4.125 4.125 0 013 14.875v-1.75z',
-            route: '/admin/ecommerce/customers'
           }
         ]
       }
     ],
     pages: [
       {
-        title: 'Authentication',
+        title: 'Prestataires',
         icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z',
         route: '/admin/auth',
         children: [
           {
-            title: 'Login',
+            title: 'tous les prestataires',
             icon: 'M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1',
-            route: '/admin/auth/login'
-          },
-          {
-            title: 'Register',
-            icon: 'M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z',
-            route: '/admin/auth/register'
+            route: '/admin/'
           }
         ]
       },
