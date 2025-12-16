@@ -12,6 +12,7 @@ import { AdminDashboardComponent } from './features/admin/components/admin-dashb
 import { DemandesComponent } from './features/admin/components/demandes/demandes.component';
 import { PaiementsComponent } from './features/admin/components/paiements/paiements.component';
 import { ServicesComponent } from './features/admin/components/services/services.component';
+import { ProfileComponent } from './features/admin/components/profile/profile.component';
 
 export const routes: Routes = [
   { path: 'admin/login', component: LoginComponent },
@@ -23,6 +24,7 @@ export const routes: Routes = [
     component: AdminComponent,
     children: [
       { path: 'dashboard', component: AdminDashboardComponent },
+      { path: 'profile', component: ProfileComponent },
       { path: 'demandes', component: DemandesComponent },
       { path: 'clients', component: ClientComponent },
       { path: 'prestataires', component: PrestataireComponent },
