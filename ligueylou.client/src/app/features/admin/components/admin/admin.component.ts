@@ -14,7 +14,7 @@ interface MenuItem {
 interface MenuSections {
   dashboard: MenuItem[];
   pages: MenuItem[];
-  utilities: MenuItem[];
+  parametre: MenuItem[];
 }
 
 @Component({
@@ -44,7 +44,10 @@ export class AdminComponent implements OnInit {
         title: 'Demandes',
         icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
         route: '/admin/analytics'
-      },
+      }
+     
+    ],
+    pages: [
       {
         title: 'Clients',
         icon: 'M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z',
@@ -56,9 +59,7 @@ export class AdminComponent implements OnInit {
             route: '/admin/ecommerce/products'
           }
         ]
-      }
-    ],
-    pages: [
+      },
       {
         title: 'Prestataires',
         icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z',
@@ -72,21 +73,35 @@ export class AdminComponent implements OnInit {
         ]
       },
       {
-        title: 'User Profile',
-        icon: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z',
-        route: '/admin/profile'
+        title: 'Paiements',
+        icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z',
+        route: '/admin/auth',
+        children: [
+          {
+            title: 'tous les paiements',
+            icon: 'M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1',
+            route: '/admin/'
+          }
+        ]
+      },
+      {
+        title: 'Services',
+        icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z',
+        route: '/admin/auth',
+        children: [
+          {
+            title: 'toutes les services',
+            icon: 'M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1',
+            route: '/admin/'
+          }
+        ]
       }
     ],
-    utilities: [
+    parametre: [
       {
         title: 'Typography',
         icon: 'M4 6h16M4 12h16M4 18h7',
         route: '/admin/typography'
-      },
-      {
-        title: 'Icons',
-        icon: 'M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01',
-        route: '/admin/icons'
       }
     ]
   };
