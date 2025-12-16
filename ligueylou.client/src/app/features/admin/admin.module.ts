@@ -8,6 +8,7 @@ import { CustomizerPanelComponent } from './utils/customizer-panel/customizer-pa
 import { VerticalHeaderComponent } from './utils/vertical-header/vertical-header.component';
 import { VerticalSidebarComponent } from './utils/vertical-sidebar/vertical-sidebar.component';
 import { DemandesComponent } from './components/demandes/demandes.component';
+import { ClientsComponent } from './components/clients/clients.component';
 
 
 
@@ -20,7 +21,8 @@ import { DemandesComponent } from './components/demandes/demandes.component';
     CustomizerPanelComponent,
     VerticalHeaderComponent,
     VerticalSidebarComponent,
-    DemandesComponent
+    DemandesComponent,
+    ClientsComponent
   ],
   imports: [
     CommonModule
