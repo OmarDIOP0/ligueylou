@@ -7,6 +7,7 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { CustomizerPanelComponent } from './utils/customizer-panel/customizer-panel.component';
 import { VerticalHeaderComponent } from './utils/vertical-header/vertical-header.component';
 import { VerticalSidebarComponent } from './utils/vertical-sidebar/vertical-sidebar.component';
+import { DemandesComponent } from './components/demandes/demandes.component';
 
 
 
@@ -18,7 +19,8 @@ import { VerticalSidebarComponent } from './utils/vertical-sidebar/vertical-side
     RegisterComponent,
     CustomizerPanelComponent,
     VerticalHeaderComponent,
-    VerticalSidebarComponent
+    VerticalSidebarComponent,
+    DemandesComponent
   ],
   imports: [
     CommonModule
