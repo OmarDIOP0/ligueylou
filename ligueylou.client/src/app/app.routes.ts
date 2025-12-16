@@ -9,6 +9,9 @@ import { ClientComponent } from './features/client/components/client/client.comp
 import { ClientDashboardComponent } from './features/client/components/client-dashboard/client-dashboard.component';
 import { LoginComponent } from './features/admin/components/auth/login/login.component';
 import { AdminDashboardComponent } from './features/admin/components/admin-dashboard/admin-dashboard.component';
+import { DemandesComponent } from './features/admin/components/demandes/demandes.component';
+import { PaiementsComponent } from './features/admin/components/paiements/paiements.component';
+import { ServicesComponent } from './features/admin/components/services/services.component';
 
 export const routes: Routes = [
   { path: 'admin/login', component: LoginComponent },
@@ -29,6 +32,11 @@ export const routes: Routes = [
     component: PrestataireComponent,
     children: [
       { path: 'dashboard', component: PrestataireDashboardComponent },
+      { path: 'demandes', component: DemandesComponent },
+      { path: 'clients', component: ClientComponent },
+      { path: 'prestataires', component: PrestataireComponent },
+      { path: 'paiements', component: PaiementsComponent },
+      { path: 'services', component: ServicesComponent }
     ]
   },
   {
