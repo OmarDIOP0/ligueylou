@@ -14,7 +14,6 @@ interface MenuItem {
 interface MenuSections {
   dashboard: MenuItem[];
   pages: MenuItem[];
-  parametre: MenuItem[];
 }
 
 @Component({
@@ -95,13 +94,6 @@ export class AdminComponent implements OnInit {
             route: '/admin/'
           }
         ]
-      }
-    ],
-    parametre: [
-      {
-        title: 'Typography',
-        icon: 'M4 6h16M4 12h16M4 18h7',
-        route: '/admin/typography'
       }
     ]
   };

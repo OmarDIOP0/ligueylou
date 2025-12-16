@@ -187,32 +187,6 @@
             }
           </ul>
         </li>
-
-        <!-- Section Utilities -->
-        <li class="mt-4">
-          <div class="px-4 py-2 text-xs font-semibold text-base-content/50 uppercase tracking-wider">
-            Parametres
-          </div>
-          <ul class="mt-1 space-y-1">
-            @for (item of menuSections.parametre; track item.title) {
-            <li>
-              <a [routerLink]="item.route"
-                 routerLinkActive="bg-primary/10 text-primary"
-                 [routerLinkActiveOptions]="{exact: true}"
-                 class="flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer group text-base-content/80 hover:bg-base-300/50 hover:text-base-content">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     class="h-5 w-5 transition-transform duration-200 text-base-content/60"
-                     fill="none"
-                     viewBox="0 0 24 24"
-                     stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="item.icon" />
-                </svg>
-                <span class="font-medium transition-all duration-200">{{ item.title }}</span>
-              </a>
-            </li>
-            }
-          </ul>
-        </li>
       </ul>
     </nav>
   </aside>
