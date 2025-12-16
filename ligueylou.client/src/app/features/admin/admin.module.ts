@@ -12,6 +12,7 @@ import { ClientsComponent } from './components/clients/clients.component';
 import { PrestatairesComponent } from './components/prestataires/prestataires.component';
 import { PaiementsComponent } from './components/paiements/paiements.component';
 import { ServicesComponent } from './components/services/services.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 
@@ -28,7 +29,8 @@ import { ServicesComponent } from './components/services/services.component';
     ClientsComponent,
     PrestatairesComponent,
     PaiementsComponent,
-    ServicesComponent
+    ServicesComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule
