@@ -10,6 +10,7 @@ import { VerticalSidebarComponent } from './utils/vertical-sidebar/vertical-side
 import { DemandesComponent } from './components/demandes/demandes.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { PrestatairesComponent } from './components/prestataires/prestataires.component';
+import { PaiementsComponent } from './components/paiements/paiements.component';
 
 
 
@@ -24,7 +25,8 @@ import { PrestatairesComponent } from './components/prestataires/prestataires.co
     VerticalSidebarComponent,
     DemandesComponent,
     ClientsComponent,
-    PrestatairesComponent
+    PrestatairesComponent,
+    PaiementsComponent
   ],
   imports: [
     CommonModule
