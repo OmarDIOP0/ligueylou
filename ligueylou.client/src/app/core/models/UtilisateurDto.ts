@@ -12,3 +12,11 @@ export interface UtilisateurDto {
   dateCreation: Date;
   derniereConnexion?: Date;
 }
+
+export interface UpdateUtilisateurDto {
+  prenom?: string;
+  nom?: string;
+  email?: string;
+  telephone?: string;
+  sexe?: SexeEnum;
+}
