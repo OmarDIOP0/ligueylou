@@ -9,6 +9,7 @@ import { VerticalHeaderComponent } from './utils/vertical-header/vertical-header
 import { VerticalSidebarComponent } from './utils/vertical-sidebar/vertical-sidebar.component';
 import { DemandesComponent } from './components/demandes/demandes.component';
 import { ClientsComponent } from './components/clients/clients.component';
+import { PrestatairesComponent } from './components/prestataires/prestataires.component';
 
 
 
@@ -22,7 +23,8 @@ import { ClientsComponent } from './components/clients/clients.component';
     VerticalHeaderComponent,
     VerticalSidebarComponent,
     DemandesComponent,
-    ClientsComponent
+    ClientsComponent,
+    PrestatairesComponent
   ],
   imports: [
     CommonModule
