@@ -23,6 +23,11 @@ export const routes: Routes = [
     component: AdminComponent,
     children: [
       { path: 'dashboard', component: AdminDashboardComponent },
+      { path: 'demandes', component: DemandesComponent },
+      { path: 'clients', component: ClientComponent },
+      { path: 'prestataires', component: PrestataireComponent },
+      { path: 'paiements', component: PaiementsComponent },
+      { path: 'services', component: ServicesComponent }
     ]
   },
   {
@@ -31,12 +36,7 @@ export const routes: Routes = [
     data: { roles: [RoleEnum.PRESTATAIRE] },
     component: PrestataireComponent,
     children: [
-      { path: 'dashboard', component: PrestataireDashboardComponent },
-      { path: 'demandes', component: DemandesComponent },
-      { path: 'clients', component: ClientComponent },
-      { path: 'prestataires', component: PrestataireComponent },
-      { path: 'paiements', component: PaiementsComponent },
-      { path: 'services', component: ServicesComponent }
+      { path: 'dashboard', component: PrestataireDashboardComponent }
     ]
   },
   {

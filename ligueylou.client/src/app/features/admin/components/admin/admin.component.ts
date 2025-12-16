@@ -42,7 +42,7 @@ export class AdminComponent implements OnInit {
       {
         title: 'Demandes',
         icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
-        route: '/admin/analytics'
+        route: '/admin/demandes'
       }
      
     ],
@@ -50,48 +50,48 @@ export class AdminComponent implements OnInit {
       {
         title: 'Clients',
         icon: 'M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z',
-        route: '/admin/ecommerce',
+        route: '/admin/clients',
         children: [
           {
             title: 'Tous les clients',
             icon: 'M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4',
-            route: '/admin/ecommerce/products'
+            route: '/admin/clients'
           }
         ]
       },
       {
         title: 'Prestataires',
         icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z',
-        route: '/admin/auth',
+        route: '/admin/prestataires',
         children: [
           {
             title: 'tous les prestataires',
             icon: 'M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1',
-            route: '/admin/'
+            route: '/admin/prestataires'
           }
         ]
       },
       {
         title: 'Paiements',
         icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z',
-        route: '/admin/auth',
+        route: '/admin/paiements',
         children: [
           {
             title: 'tous les paiements',
             icon: 'M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1',
-            route: '/admin/'
+            route: '/admin/paiements'
           }
         ]
       },
       {
         title: 'Services',
         icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z',
-        route: '/admin/auth',
+        route: '/admin/services',
         children: [
           {
             title: 'toutes les services',
             icon: 'M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1',
-            route: '/admin/'
+            route: '/admin/services'
           }
         ]
       }
