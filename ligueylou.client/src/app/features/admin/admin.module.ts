@@ -11,6 +11,7 @@ import { DemandesComponent } from './components/demandes/demandes.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { PrestatairesComponent } from './components/prestataires/prestataires.component';
 import { PaiementsComponent } from './components/paiements/paiements.component';
+import { ServicesComponent } from './components/services/services.component';
 
 
 
@@ -26,7 +27,8 @@ import { PaiementsComponent } from './components/paiements/paiements.component';
     DemandesComponent,
     ClientsComponent,
     PrestatairesComponent,
-    PaiementsComponent
+    PaiementsComponent,
+    ServicesComponent
   ],
   imports: [
     CommonModule
