@@ -1,0 +1,92 @@
+/* profile.component.css */
+:host {
+  display: block;
+  height: 100vh;
+}
+
+/* Styles pour les états de validation */
+.border-red-300 {
+  border-color: #fca5a5;
+}
+
+.border-gray-300 {
+  border-color: #d1d5db;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.disabled\:cursor-not-allowed:disabled {
+  cursor: not-allowed;
+}
+
+/* Grid et autres styles existants */
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.grid-cols-1 {
+  grid-template-columns: 1fr;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.bg-gray-50 {
+  background-color: #f9fafb;
+}
+
+.bg-green-500 {
+  background-color: #10b981;
+}
+
+.text-green-600 {
+  color: #059669;
+}
+
+.bg-green-100 {
+  background-color: #d1fae5;
+}
+
+.text-green-800 {
+  color: #065f46;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.focus\:ring-green-500:focus {
+  --tw-ring-color: #10b981;
+  outline: none;
+  ring-width: 2px;
+}

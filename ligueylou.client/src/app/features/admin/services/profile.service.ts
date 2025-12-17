@@ -14,17 +14,17 @@ export class ProfileService {
   private endPoints = inject(ApiEndpointsService);
 
   getProfile(): Observable<UtilisateurDto> {
-    return this.http.get<UtilisateurDto>(`${this.endPoints.utilisateur}/profile`);
+    return this.http.get<UtilisateurDto>(this.endPoints.utilisateur.profile);
   }
   updateProfile(id: string, payload: UpdateUtilisateurDto): Observable<UtilisateurDto> {
-    return this.http.put<UtilisateurDto>(`${this.endPoints.utilisateur}/${id}`, payload);
+    return this.http.put<UtilisateurDto>(this.endPoints.utilisateur.update(id), payload);
   }
 
   deleteAccount(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.endPoints.utilisateur}/${id}`);
+    return this.http.delete<void>(this.endPoints.utilisateur.delete(id));
   }
 
   logout(): Observable<any> {
-    return this.http.post(`${this.endPoints.utilisateur}/logout`, {});
+    return this.http.post(this.endPoints.utilisateur.logout, {});
   }
 }
